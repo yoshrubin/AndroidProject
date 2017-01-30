@@ -34,6 +34,13 @@ public class RemoteDataSource implements IDataSource {
 
     private static JSONObject business;
     private static final String WEB_URL = "http://rubinj.vlab.jct.ac.il";
+    private java.util.Date currentBusinessTimestamp;
+    private java.util.Date currentAttractionTimestamp;
+
+    public RemoteDataSource(){
+        currentBusinessTimestamp = new java.util.Date();
+        currentAttractionTimestamp = new java.util.Date();
+    }
 
     private static String GET(String url) throws Exception {
         URL obj = new URL(url);
@@ -310,21 +317,39 @@ public class RemoteDataSource implements IDataSource {
 
     @Override
     public boolean newBusiness() {
-        if (ManagerFactory.businessCount == 0)
+        JSONObject array = null;
+        try {
+            array = new JSONObject(GET(WEB_URL + "/getTimeBusiness.php"));
+            String ts = array.getString("last_update");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", Locale.US);
+            java.util.Date d = dateFormat.parse(ts);
+            if(d.after(currentBusinessTimestamp)) {
+                currentBusinessTimestamp = d;
+                return true;
+            }
             return false;
-        else {
-            ManagerFactory.businessCount = 0;
-            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
     @Override
     public boolean newAction() {
-        if (ManagerFactory.actionCount == 0)
+        JSONObject array = null;
+        try {
+            array = new JSONObject(GET(WEB_URL + "/getTimeAttraction.php"));
+            String ts = array.getString("last_update");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", Locale.US);
+            java.util.Date d = dateFormat.parse(ts);
+            if(d.after(currentAttractionTimestamp)) {
+                currentAttractionTimestamp = d;
+                return true;
+            }
             return false;
-        else {
-            ManagerFactory.actionCount = 0;
-            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
