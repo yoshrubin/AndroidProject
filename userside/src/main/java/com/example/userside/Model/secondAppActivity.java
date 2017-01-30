@@ -30,7 +30,7 @@ public class secondAppActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Backend db;
-    public static Context context;
+    public static Context context ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class secondAppActivity extends AppCompatActivity
         setContentView(R.layout.activity_second_app);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        context = getApplicationContext();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

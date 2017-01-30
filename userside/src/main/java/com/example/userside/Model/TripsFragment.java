@@ -7,8 +7,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.Toast;
 
+import com.example.userside.Backend.adapters.tripExpandListAdapter;
+import com.example.userside.Backend.expendableList.ChildTrip;
+import com.example.userside.Backend.expendableList.GroupTrip;
 import com.example.userside.R;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,41 +31,13 @@ import com.example.userside.R;
  */
 public class TripsFragment extends android.app.Fragment {
 
-    /*
+    private LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
+    private ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
 
-    private tripExpandListAdapter ExpAdapter;
-    private ArrayList<Group> ExpListItems;
-    private ExpandableListView ExpandList;
+    private tripExpandListAdapter listAdapter;
+    private ExpandableListView exp_trips;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        //super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
 
-        ExpandList = (ExpandableListView) findViewById(R.id.exp_trips);
-        ExpListItems = SetStandardGroups();
-        ExpAdapter = new tripExpandListAdapter(MainActivity.this, ExpListItems);
-        ExpandList.setAdapter(ExpAdapter);
-
-        ExpandList.setOnChildClickListener(new OnChildClickListener() {
-
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                    int groupPosition, int childPosition, long id) {
-
-                String group_name = ExpListItems.get(groupPosition).getName();
-
-                ArrayList<Child> ch_list = ExpListItems.get(
-                        groupPosition).getItems();
-
-                String child_name = ch_list.get(childPosition).getName();
-
-                showToastMsg(group_name + “n” + child_name);
-
-                return false;
-            }
-        });
-     */
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -95,14 +78,134 @@ public class TripsFragment extends android.app.Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
+    private void loadData() {
+
+        /*
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String dateInString = "31-08-1982";
+        Date date = null;
+
+        try {
+            date = sdf.parse(dateInString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        */
+        String date="01/01/1999";
+
+        System.out.println(date); //Tue Aug 31 10:20:56 SGT 1982
+        addTrip("Israel",date,date,"niceAgency", (float)2.5);
+        addTrip("Taiwan",date,date,"niceAgency", (float)5.5);
+        addTrip("Israel",date,date,"niceAgency", (float)2.5);
+    }
+    //here we maintain our products in various departments
+    //private int addTrip(String country, Date startD, Date endD, String agency, float price) {
+    private int addTrip(String country, String startD, String endD, String agency, float price) {
+
+        int groupPosition = 0;
+
+        //check the hash map if the group already exists
+        GroupTrip headerInfo = subjects.get(country);
+        //add the group if doesn't exists
+        if (headerInfo == null) {
+            headerInfo = new GroupTrip();
+            headerInfo.setCountryName(country);
+            subjects.put(country, headerInfo);
+            tripGroupList.add(headerInfo);
+        }
+        //get the children for the group
+        ArrayList<ChildTrip> tripChildList = headerInfo.gettripDetails();
+        //size of the children list
+        int listSize = tripChildList.size();
+        //add to the counter
+        listSize++;
+
+        //create a new child and add that to the group
+        ChildTrip detailInfo = new ChildTrip();
+
+
+        detailInfo.setStartDate(startD);
+        detailInfo.setEndDate(endD);
+        detailInfo.setAgency(agency);
+        detailInfo.setPrice(price);
+
+        tripChildList.add(detailInfo);
+        headerInfo.settripDetails(tripChildList);
+        //find the group position inside the list
+        groupPosition = tripGroupList.indexOf(headerInfo);
+        return groupPosition;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_trips,container, false);
         // Inflate the layout for this fragment
+
+        // add data for displaying in expandable list view
+        loadData();
+
+        //get reference of the ExpandableListView
+        exp_trips = (ExpandableListView) view.findViewById(R.id.exp_trips);
+
+        // create the adapter by passing your ArrayList data
+        listAdapter = new tripExpandListAdapter(secondAppActivity.context,tripGroupList );
+
+        // attach the adapter to the expandable list view
+        exp_trips.setAdapter(listAdapter);
+
+        //expand all the Groups
+        expandAll();
+
+        // setOnChildClickListener listener for child row click
+        exp_trips.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                //get the group header
+                GroupTrip headerInfo = tripGroupList.get(groupPosition);
+                //get the child info
+                ChildTrip detailInfo =  headerInfo.gettripDetails().get(childPosition);
+                //display it or do something with it
+                Toast.makeText(secondAppActivity.context.getApplicationContext()  , " Clicked on :: " + headerInfo.getcountryName()
+                        + "/" +detailInfo.getStartDate()+"/"+ detailInfo.getAgency()+"/"+  +detailInfo.getPrice(), Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
+        // setOnGroupClickListener listener for group heading click
+        exp_trips.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                //get the group header
+                GroupTrip headerInfo = tripGroupList.get(groupPosition);
+                //display it or do something with it
+                Toast.makeText(secondAppActivity.context.getApplicationContext(), " Header is :: " + headerInfo.getcountryName(),
+                        Toast.LENGTH_LONG).show();
+
+                return false;
+            }
+        });
+
         return inflater.inflate(R.layout.fragment_trips, container, false);
+    }
+
+    private void expandAll() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++){
+            exp_trips.expandGroup(i);
+        }
+    }
+
+    //method to collapse all groups
+    private void collapseAll() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++){
+            exp_trips.collapseGroup(i);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -129,6 +232,7 @@ public class TripsFragment extends android.app.Fragment {
         mListener = null;
     }
 
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -142,5 +246,7 @@ public class TripsFragment extends android.app.Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
+
     }
 }
