@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBackground"
+    android:id="@+id/linearLayoutAction"
+    android:weightSum="11">
+
+
+
+    <TextView
+        android:textColor="@color/darkBlue"
+        android:text="Choose attraction type "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/chooseText"
+        android:layout_alignParentEnd="true"
+        android:textSize="20sp"
+        android:textStyle="normal|bold"
+        android:gravity="left"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chooseSpinner"
+
+        android:layout_below="@+id/chooseText"
+        android:layout_alignParentStart="true"
+
+        />
+
+
+
+
+
+    <TextView
+        android:text="Enter Country:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chooseSpinner"
+        android:layout_alignParentStart="true"
+        android:id="@+id/countryText"
+        android:layout_alignBottom="@+id/countryEdit"
+        android:layout_toStartOf="@+id/countryEdit"
+        android:textStyle="normal|bold"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/darkBlue"/>
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Country"
+        android:ems="10"
+        android:layout_below="@+id/chooseSpinner"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/countryEdit"
+        android:textSize="18sp"
+        android:gravity="left"
+        android:textColorHint="@color/test2"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:text="Start Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/countryText"
+                android:layout_alignParentStart="true"
+                android:id="@+id/startText"
+                android:textSize="20sp"
+                android:layout_toStartOf="@+id/countryEdit"
+                android:textStyle="normal|bold"
+                android:gravity="left"
+                android:textColor="@color/darkBlue"
+               />
+
+            <EditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:hint="dd/mm/yyyy"
+                android:ems="10"
+                android:layout_below="@+id/startText"
+                android:layout_alignParentStart="true"
+                android:id="@+id/startEdit"
+                android:textSize="20sp"
+                android:layout_toStartOf="@+id/endText"
+                android:gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textColorHint="@color/test2"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
+           <TextView
+               android:text="End Date"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignBottom="@+id/startText"
+               android:id="@+id/endText"
+               android:textSize="20sp"
+               android:layout_alignParentEnd="true"
+               android:layout_toEndOf="@+id/startText"
+               android:layout_below="@+id/countryEdit"
+               android:textStyle="normal|bold"
+               android:gravity="left"
+               android:textColor="@color/darkBlue"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="dd/mm/yyyy"
+                android:ems="10"
+                android:layout_below="@+id/endText"
+                android:layout_toEndOf="@+id/startEdit"
+                android:id="@+id/endEdit"
+                android:inputType="date"
+                android:gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textColorHint="@color/test2"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:text="Price:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startEdit"
+        android:layout_alignParentStart="true"
+        android:id="@+id/priceText"
+        android:layout_alignBottom="@+id/priceEdit"
+        android:layout_toStartOf="@+id/endEdit"
+        android:textStyle="normal|bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/darkBlue"
+
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:hint="0.0"
+        android:ems="10"
+        android:layout_below="@+id/startEdit"
+        android:layout_toEndOf="@+id/startEdit"
+        android:id="@+id/priceEdit"
+        android:inputType="numberDecimal"
+        android:textColorHint="@color/test2"/>
+
+    <TextView
+        android:text="Description:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptText"
+        android:textStyle="normal|bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_above="@+id/addActionButton"
+        android:layout_alignParentStart="true"
+        android:layout_weight="0.55"
+        android:layout_marginTop="7dp"
+        android:textColor="@color/darkBlue"
+
+        />
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Fun..."
+        android:ems="10"
+        android:id="@+id/descriptEdit"
+        android:layout_below="@+id/priceEdit"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:textColorHint="@color/test2"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:id="@+id/spinnerBusiness" />
+
+    <Button
+        android:text="Add Activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descriptEdit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+
+        android:id="@+id/addActionButton"
+        android:onClick="addActionClick"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@color/GREY"
+        />
+
+
+</LinearLayout>

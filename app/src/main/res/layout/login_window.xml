@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBackground">
+
+
+    <Button
+        android:text="Register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/regButton"
+        android:onClick="registerClicked"
+        android:textColor="@color/GREY"
+        android:layout_marginBottom="89dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/loginButton"
+
+        android:layout_alignEnd="@+id/loginButton" />
+
+    <Button
+        android:text="Login"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:onClick="loginClicked"
+        android:textColor="@color/GREY"
+        android:layout_above="@+id/regButton"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Username"
+        android:textColorHint="#1A1297"
+        android:ems="10"
+        android:id="@+id/userEdit"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/passEdit"
+        android:layout_marginTop="88dp"
+        android:layout_alignEnd="@+id/passEdit" />
+
+    <EditText
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:textColorHint="#1A1297"
+        android:ems="10"
+        android:hint="password"
+        android:id="@+id/passEdit"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/userEdit"
+        android:layout_alignStart="@+id/loginButton"
+        android:layout_alignEnd="@+id/loginButton" />
+
+</RelativeLayout>
