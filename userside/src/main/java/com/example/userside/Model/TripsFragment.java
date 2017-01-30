@@ -19,6 +19,42 @@ import com.example.userside.R;
  * create an instance of this fragment.
  */
 public class TripsFragment extends android.app.Fragment {
+
+    /*
+
+    private tripExpandListAdapter ExpAdapter;
+    private ArrayList<Group> ExpListItems;
+    private ExpandableListView ExpandList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_main);
+
+        ExpandList = (ExpandableListView) findViewById(R.id.exp_trips);
+        ExpListItems = SetStandardGroups();
+        ExpAdapter = new tripExpandListAdapter(MainActivity.this, ExpListItems);
+        ExpandList.setAdapter(ExpAdapter);
+
+        ExpandList.setOnChildClickListener(new OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                    int groupPosition, int childPosition, long id) {
+
+                String group_name = ExpListItems.get(groupPosition).getName();
+
+                ArrayList<Child> ch_list = ExpListItems.get(
+                        groupPosition).getItems();
+
+                String child_name = ch_list.get(childPosition).getName();
+
+                showToastMsg(group_name + “n” + child_name);
+
+                return false;
+            }
+        });
+     */
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
