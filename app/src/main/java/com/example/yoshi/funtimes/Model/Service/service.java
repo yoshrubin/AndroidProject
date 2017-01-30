@@ -42,7 +42,6 @@ public class service extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         background.start();
-        Toast.makeText(getApplicationContext(),"hi2", Toast.LENGTH_SHORT).show();
         return START_STICKY;
     }
 
