@@ -191,7 +191,7 @@ public class TripsFragment extends android.app.Fragment {
             }
         });
 
-        return inflater.inflate(R.layout.fragment_trips, container, false);
+        return view;
     }
 
     private void expandAll() {
