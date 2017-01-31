@@ -99,6 +99,9 @@ public class secondAppActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
+
+
         if (id == R.id.nav_agencies) {
 
             setTitle("All the agencies");
