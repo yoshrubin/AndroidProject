@@ -109,6 +109,8 @@ public class secondAppActivity extends AppCompatActivity
             ft.commit();
 
 
+
+
         } else if (id == R.id.nav_trips) {
             android.app.Fragment f5 = new TripsFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
