@@ -170,7 +170,7 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
             convertView=inflater.inflate(R.layout.child_trip_item,null);
         }
         TextView startDate =(TextView)convertView.findViewById(R.id.entered_startdate_trip_exp);
-        startDate.setText(childTrip.getStartDate().toString());
+        startDate.setText(childTrip.getStartDate());
 
         TextView endDate =(TextView)convertView.findViewById(R.id.entred_enddate_trip_exp);
         endDate.setText(childTrip.getEndDate().toString());

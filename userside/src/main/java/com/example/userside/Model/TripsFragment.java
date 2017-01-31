@@ -113,6 +113,7 @@ public class TripsFragment extends android.app.Fragment {
         //add the group if doesn't exists
         if (headerInfo == null) {
             headerInfo = new GroupTrip();
+            headerInfo.settripDetails(new ArrayList<ChildTrip>());
             headerInfo.setCountryName(country);
             subjects.put(country, headerInfo);
             tripGroupList.add(headerInfo);
