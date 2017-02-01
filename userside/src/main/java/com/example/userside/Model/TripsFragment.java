@@ -65,7 +65,6 @@ public class TripsFragment extends android.app.Fragment {
     public static TripsFragment newInstance(String param1, String param2) {
         TripsFragment fragment = new TripsFragment();
         Bundle args = new Bundle();
-
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -84,17 +83,7 @@ public class TripsFragment extends android.app.Fragment {
 
     private void loadData() {
 
-        /*
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String dateInString = "31-08-1982";
-        Date date = null;
 
-        try {
-            date = sdf.parse(dateInString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        */
         String date="01/01/1999";
 
         System.out.println(date); //Tue Aug 31 10:20:56 SGT 1982
@@ -102,7 +91,7 @@ public class TripsFragment extends android.app.Fragment {
         addTrip("Taiwan",date,date,"niceAgency", (float)5.5);
         addTrip("Israel",date,date,"niceAgency", (float)2.5);
     }
-    //here we maintain our products in various departments
+
     //private int addTrip(String country, Date startD, Date endD, String agency, float price) {
     private int addTrip(String country, String startD, String endD, String agency, float price) {
 
