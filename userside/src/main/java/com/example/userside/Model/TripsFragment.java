@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.example.userside.Backend.DB.listDB;
+import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.adapters.tripExpandListAdapter;
 import com.example.userside.Backend.expendableList.ChildTrip;
 import com.example.userside.Backend.expendableList.GroupTrip;
@@ -18,8 +20,8 @@ import com.example.userside.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +32,9 @@ import java.util.LinkedHashMap;
  * create an instance of this fragment.
  */
 public class TripsFragment extends android.app.Fragment {
+
+    public listDB dbList = new listDB();
+    public ArrayList<Action> actionList = new ArrayList<>();
 
     private LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
     private ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
@@ -79,17 +84,25 @@ public class TripsFragment extends android.app.Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
         }
+        try {
+            actionList = dbList.getAttractionList();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadData() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Action action;
+        String startDate, endDate;
 
-
-        String date="01/01/1999";
-
-        System.out.println(date); //Tue Aug 31 10:20:56 SGT 1982
-        addTrip("Israel",date,date,"niceAgency", (float)2.5);
-        addTrip("Taiwan",date,date,"niceAgency", (float)5.5);
-        addTrip("Israel",date,date,"niceAgency", (float)2.5);
+        for (int i = 0; i < actionList.size(); i++){
+            action = actionList.get(i);
+            startDate = sdf.format(action.getStartDate());
+            endDate = sdf.format(action.getEndDate());
+            addTrip(action.getCountry(),startDate,endDate,action.getUser(),(float)action.getPrice());
+        }
     }
 
     //private int addTrip(String country, Date startD, Date endD, String agency, float price) {
