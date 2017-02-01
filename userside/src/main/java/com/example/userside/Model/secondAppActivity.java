@@ -99,6 +99,7 @@ public class secondAppActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_agencies) {
 
             setTitle("All the agencies");
@@ -107,6 +108,8 @@ public class secondAppActivity extends AppCompatActivity
             ft.replace(R.id.content_second_app, f4); // f2_container is your FrameLayout container
             Toast.makeText(getApplicationContext(), "I'M the agencies fragment", Toast.LENGTH_LONG).show();
             ft.commit();
+
+
 
 
         } else if (id == R.id.nav_trips) {

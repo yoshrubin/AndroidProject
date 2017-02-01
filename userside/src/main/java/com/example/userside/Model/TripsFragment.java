@@ -160,7 +160,7 @@ public class TripsFragment extends android.app.Fragment {
         exp_trips.setAdapter(listAdapter);
 
         //expand all the Groups
-        expandAll();
+        //expandAll();
 
         // setOnChildClickListener listener for child row click
         exp_trips.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
