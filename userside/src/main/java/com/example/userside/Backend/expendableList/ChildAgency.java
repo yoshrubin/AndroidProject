@@ -5,21 +5,21 @@ package com.example.userside.Backend.expendableList;
  */
 
 public class ChildAgency {
-    //private String agencyName;
+    private String agencyName;
     private String agencyLocation;
     private String agencyWebsite;
     private String agencyMail;
 
 
 
-    /*public String getAgencyName() {
+    public String getAgencyName() {
         return agencyName;
     }
-*/
-    /*public void setAgencyName(String agencyName) {
+
+    public void setAgencyName(String agencyName) {
         this.agencyName = agencyName;
     }
-*/
+
     public String getAgencyLocation() {
         return agencyLocation;
     }

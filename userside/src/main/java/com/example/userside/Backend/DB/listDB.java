@@ -31,10 +31,10 @@ public class listDB implements Backend{
     Cursor busMatrix;
     Cursor actMatrix;
     ContentResolver resolver;
-    public static ArrayList<Business> businessList = new ArrayList<>();
-    public static ArrayList<Action> actionList = new ArrayList<>();
-    public static ArrayList<Action> actionBusinessList = new ArrayList<>();
-    public static ArrayList<Business> businessCountryList = new ArrayList<>();
+    public ArrayList<Business> businessList = new ArrayList<>();
+    public ArrayList<Action> actionList = new ArrayList<>();
+    public ArrayList<Action> actionBusinessList = new ArrayList<>();
+    public ArrayList<Business> businessCountryList = new ArrayList<>();
 
     static Uri actUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/actions");
     static Uri busUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/business");

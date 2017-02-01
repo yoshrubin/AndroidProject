@@ -15,6 +15,8 @@ import com.example.userside.R;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -196,5 +198,8 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-
+    public void setNewItems(ArrayList<GroupTrip> groupTrips) {
+        this.groupTrips = groupTrips;
+        notifyDataSetChanged();
+    }
 }

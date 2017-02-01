@@ -1,6 +1,8 @@
 package com.example.userside.Model;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.userside.Backend.DB.ActionFilter;
+import com.example.userside.Backend.DB.BusinessFilter;
 import com.example.userside.Backend.DB.listDB;
 import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.Entitites.Business;
@@ -24,8 +28,6 @@ import com.example.userside.R;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-
-import static com.example.userside.Backend.DB.listDB.businessList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,7 +88,7 @@ public class AgenciesFragment extends android.app.Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            
+
         }
         businessList.addAll(dbList.getBusinessList());
     }
@@ -159,6 +161,27 @@ public class AgenciesFragment extends android.app.Fragment {
                 /*Toast.makeText(secondAppActivity.context.getApplicationContext()  , " Clicked on :: " + headerInfo.getcountryName()
                         + "/" +detailInfo.getStartDate()+"/"+ detailInfo.getAgency()+"/"+  +detailInfo.getPrice(), Toast.LENGTH_LONG).show();
                */
+                final TextView site = (TextView) exp_agencies.findViewById(R.id.entred_site_agency_exp);
+                final TextView location = (TextView) exp_agencies.findViewById(R.id.entred_location_agency_exp);
+                final TextView email = (TextView) exp_agencies.findViewById(R.id.entred_mail_agency_exp);
+                site.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        WebsiteIntet(getActivity(), site.getText().toString());
+                    }
+                });
+                location.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MapsIntent(getActivity(), location.getText().toString());
+                    }
+                });
+                email.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EmailIntent(getActivity(), email.getText().toString());
+                    }
+                });
                 return false;
             }
 
@@ -173,7 +196,6 @@ public class AgenciesFragment extends android.app.Fragment {
                 /*
                 Toast.makeText(secondAppActivity.context.getApplicationContext(), " Header is :: " + headerInfo.getcountryName(),
                         Toast.LENGTH_LONG).show();
-
                 */
                 return false;
             }
@@ -228,11 +250,14 @@ public class AgenciesFragment extends android.app.Fragment {
         beforeFilterList.addAll(businessList);
 
         list.addAll(businessList);
-        ActionFilter filter = new ActionFilter(s, list);
-        ArrayList<Action> newList;
+        BusinessFilter filter = new BusinessFilter(s, list);
+        ArrayList<Business> newList;
         try {
             newList = filter.Filter();
-            TripsFragment.refreshAdapter(listAdapter, businessList, newList);
+            businessList.addAll(newList);
+            agencyGroupList.clear();
+            subjects.clear();
+            setNewItems(agencyGroupList, subjects);
         } catch (Exception e) {
             Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT);
         }
@@ -242,7 +267,10 @@ public class AgenciesFragment extends android.app.Fragment {
         if (beforeFilterList.size() == 0)
             if (businessList.size() != 0)
                 return;
-        refreshAdapter(listAdapter, businessList, beforeFilterList);
+        businessList.addAll(beforeFilterList);
+        agencyGroupList.clear();
+        subjects.clear();
+        setNewItems(agencyGroupList,subjects);
     }
 
     public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
@@ -264,5 +292,43 @@ public class AgenciesFragment extends android.app.Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void setNewItems(ArrayList<GroupAgency> agencyGroupList,LinkedHashMap<String, GroupAgency> subjects) {
+        this.agencyGroupList = agencyGroupList;
+        this.subjects = subjects;
+        listAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * all the intents when clicked on certain data
+     * @param current
+     * @param website
+     */
+    public static void WebsiteIntet(Activity current, String website){
+        current.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://" +website)));
+    }
+    /**
+     * all the intents when clicked on certain data
+     */
+    public static void MapsIntent(Activity curr,String city){
+        Intent Chooser;
+        String url = "http://maps.google.com/maps?daddr="+city;
+        Intent iintent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
+        Chooser = Intent.createChooser(iintent,"Launch Maps");
+        curr.startActivity(Chooser);
+    }
+    /**
+     * all the intents when clicked on certain data
+     */
+    public static void EmailIntent(Activity curr,String email){
+        if(!email.matches(".+@.+[.]com"))
+            if(!email.contains("@"))
+                email += "@gmail.com";
+            else
+                email += "gmail.com";
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", email, null));
+        curr.startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 }

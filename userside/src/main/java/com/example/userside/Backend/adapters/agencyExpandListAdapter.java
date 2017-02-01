@@ -114,7 +114,6 @@ public class agencyExpandListAdapter extends BaseExpandableListAdapter {
      * underlying data.
      *
      * @return whether or not the same ID always refers to the same object
-     * @see Adapter#hasStableIds()
      */
     @Override
     public boolean hasStableIds() {
@@ -197,14 +196,12 @@ public class agencyExpandListAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.child_ageny_item,null);
         }
-
         TextView location =(TextView)convertView.findViewById(R.id.entred_location_agency_exp);
         location.setText(childAgency.getAgencyLocation());
-        TextView website =(TextView)convertView.findViewById(R.id.entred_web_agency_exp);
-        website.setText(childAgency.getAgencyWebsite());
         TextView email =(TextView)convertView.findViewById(R.id.entred_mail_agency_exp);
         email.setText(childAgency.getAgencyMail());
-
+        TextView website =(TextView)convertView.findViewById(R.id.entred_site_agency_exp);
+        website.setText(childAgency.getAgencyWebsite());
         return convertView;
 
     }

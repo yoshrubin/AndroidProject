@@ -5,57 +5,85 @@
     android:layout_height="match_parent"
     android:weightSum="2">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:weightSum="3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray">
 
         <TextView
             android:id="@+id/location_agency_exp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="location:"/>
-
-        <TextView
-            android:id="@+id/web_agency_exp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="website:"
-            />
+            android:text="Location:"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            android:layout_marginBottom="1px"/>
 
         <TextView
             android:id="@+id/mail_agency_exp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Email:"/>
+            android:text="Email:"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            android:layout_marginBottom="1px"/>
+        <TextView
+            android:id="@+id/site_agency_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Site:"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            android:layout_marginBottom="1px"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:weightSum="3"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:background="@android:color/darker_gray">
         <TextView
             android:id="@+id/entred_location_agency_exp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/entred_web_agency_exp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="1px"/>
 
         <TextView
             android:id="@+id/entred_mail_agency_exp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="1px"/>
+
+        <TextView
+            android:id="@+id/entred_site_agency_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:background="@android:color/white"
+            android:layout_marginBottom="1px"
+            android:onClick=""/>
     </LinearLayout>
 
 

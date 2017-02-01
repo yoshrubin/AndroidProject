@@ -268,6 +268,7 @@ public class TripsFragment extends android.app.Fragment {
     public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
         originList.clear();
         originList.addAll(newList);
+
         ad.notifyDataSetChanged();
     }
 
