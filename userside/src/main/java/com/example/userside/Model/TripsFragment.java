@@ -2,14 +2,18 @@ package com.example.userside.Model;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.example.userside.Backend.DB.ActionFilter;
 import com.example.userside.Backend.DB.listDB;
 import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.adapters.tripExpandListAdapter;
@@ -35,6 +39,7 @@ public class TripsFragment extends android.app.Fragment {
 
     public listDB dbList = new listDB();
     public ArrayList<Action> actionList = new ArrayList<>();
+    private ArrayList<Action> beforeFilterList = new ArrayList<>();
 
     private LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
     private ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
@@ -85,7 +90,7 @@ public class TripsFragment extends android.app.Fragment {
 
         }
         try {
-            actionList = dbList.getAttractionList();
+            actionList.addAll(dbList.getAttractionList());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -233,6 +238,37 @@ public class TripsFragment extends android.app.Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void Filter(String s) {
+        ArrayList list = new ArrayList();
+        //saving current list
+        beforeFilterList.clear();
+        beforeFilterList.addAll(actionList);
+
+        list.addAll(actionList);
+        ActionFilter filter = new ActionFilter(s, list);
+        ArrayList<Action> newList;
+        try {
+            newList = filter.Filter();
+            TripsFragment.refreshAdapter(listAdapter, actionList, newList);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT);
+        }
+    }
+
+    public void clearFilter() {
+        if (beforeFilterList.size() == 0)
+            if (actionList.size() != 0)
+                return;
+        refreshAdapter(listAdapter, actionList, beforeFilterList);
+    }
+
+    public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
+        originList.clear();
+        originList.addAll(newList);
+        ad.notifyDataSetChanged();
     }
 
 

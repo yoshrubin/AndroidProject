@@ -2,13 +2,21 @@ package com.example.userside.Model;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
+import com.example.userside.Backend.DB.ActionFilter;
+import com.example.userside.Backend.DB.listDB;
+import com.example.userside.Backend.Entitites.Action;
+import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.adapters.agencyExpandListAdapter;
 import com.example.userside.Backend.expendableList.ChildAgency;
 import com.example.userside.Backend.expendableList.GroupAgency;
@@ -16,6 +24,8 @@ import com.example.userside.R;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import static com.example.userside.Backend.DB.listDB.businessList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +51,10 @@ public class AgenciesFragment extends android.app.Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    public listDB dbList = new listDB();
+    public ArrayList<Business> businessList = new ArrayList<>();
+    private ArrayList<Business> beforeFilterList = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,11 +88,15 @@ public class AgenciesFragment extends android.app.Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
             
         }
+        businessList.addAll(dbList.getBusinessList());
     }
     private void loadData(){
-        addAgency("YoshiAgency","Israel, Jerusalem, Havaad haleumi21","www.ababab.com","aviv_@walla.com");
-        addAgency("AvivAgency","Israel, Tel-Aviv, trumpeldor 6","www.aaa.co.il","Yoshi@gmail.com");
-        addAgency("EzraAgency","Israel, Jerusalem, st.Rupin 2","www.ababa.com","aefsfg@gmail.com");
+        Business business;
+
+        for (int i = 0; i < businessList.size(); i++) {
+            business = businessList.get(i);
+            addAgency(business.getName(), business.getCountry(), business.getSite(), business.getEmail());
+        }
     }
     private int addAgency(String agencyName, String location, String website, String email){
 
@@ -200,6 +218,37 @@ public class AgenciesFragment extends android.app.Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void Filter(String s) {
+        ArrayList list = new ArrayList();
+        //saving current list
+        beforeFilterList.clear();
+        beforeFilterList.addAll(businessList);
+
+        list.addAll(businessList);
+        ActionFilter filter = new ActionFilter(s, list);
+        ArrayList<Action> newList;
+        try {
+            newList = filter.Filter();
+            TripsFragment.refreshAdapter(listAdapter, businessList, newList);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT);
+        }
+    }
+
+    public void clearFilter() {
+        if (beforeFilterList.size() == 0)
+            if (businessList.size() != 0)
+                return;
+        refreshAdapter(listAdapter, businessList, beforeFilterList);
+    }
+
+    public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
+        originList.clear();
+        originList.addAll(newList);
+        ad.notifyDataSetChanged();
     }
 
     /**
