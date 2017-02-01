@@ -7,8 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 
+import com.example.userside.Backend.adapters.agencyExpandListAdapter;
+import com.example.userside.Backend.expendableList.ChildAgency;
+import com.example.userside.Backend.expendableList.GroupAgency;
 import com.example.userside.R;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +26,13 @@ import com.example.userside.R;
  * create an instance of this fragment.
  */
 public class AgenciesFragment extends android.app.Fragment {
+
+    private LinkedHashMap<String, GroupAgency> subjects = new LinkedHashMap<String, GroupAgency>();
+    private ArrayList<GroupAgency> agencyGroupList = new ArrayList<GroupAgency>();
+
+    private agencyExpandListAdapter listAdapter;
+    private ExpandableListView exp_agencies;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,13 +75,108 @@ public class AgenciesFragment extends android.app.Fragment {
             
         }
     }
+    private void loadData(){
+        addAgency("YoshiAgency","Israel, Jerusalem, Havaad haleumi21","www.ababab.com","aviv_@walla.com");
+        addAgency("AvivAgency","Israel, Tel-Aviv, trumpeldor 6","www.aaa.co.il","Yoshi@gmail.com");
+        addAgency("EzraAgency","Israel, Jerusalem, st.Rupin 2","www.ababa.com","aefsfg@gmail.com");
+    }
+    private int addAgency(String agencyName, String location, String website, String email){
+
+        int groupPosition=0;
+        //check the hash map if the group already exists
+        GroupAgency headerInfo = subjects.get(agencyName);
+        //add the group if doesn't exists
+        if (headerInfo == null) {
+            headerInfo = new GroupAgency();
+            headerInfo.setAgencyDetails (new ArrayList<ChildAgency>());
+            headerInfo.setAgencyName(agencyName);
+            subjects.put(agencyName, headerInfo);
+            agencyGroupList.add(headerInfo);
+        }
+        //get the children for the group
+        ArrayList<ChildAgency> agencyChildList = headerInfo.getAgencyDetails();
+        //size of the children list
+        int listSize = agencyChildList.size();
+        //add to the counter
+        listSize++;
+        //create a new child and add that to the group
+        ChildAgency detailInfo = new ChildAgency();
+
+        detailInfo.setAgencyLocation(location);
+        detailInfo.setAgencyWebsite(website);
+        detailInfo.setAgencyMail(email);
+
+        agencyChildList.add(detailInfo);
+        headerInfo.setAgencyDetails(agencyChildList);
+        //find the group position inside the list
+        groupPosition = agencyChildList.indexOf(headerInfo);
+        return groupPosition;
+    }
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_agencies, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view=inflater.inflate(R.layout.fragment_agencies, container, false);
+        // add data for displaying in expandable list view
+        loadData();
+        //get reference of the ExpandableListView
+        exp_agencies = (ExpandableListView) view.findViewById(R.id.exp_agencies);
+
+        // create the adapter by passing your ArrayList data
+        listAdapter = new agencyExpandListAdapter(secondAppActivity.context,agencyGroupList);
+
+        // attach the adapter to the expandable list view
+        exp_agencies.setAdapter(listAdapter);
+
+        // setOnChildClickListener listener for child row click
+        exp_agencies.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                //get the group header
+                GroupAgency headerInfo = agencyGroupList.get(groupPosition);
+                //get the child info
+                ChildAgency detailInfo =  headerInfo.getAgencyDetails().get(childPosition);
+                //display it or do something with it
+                /*Toast.makeText(secondAppActivity.context.getApplicationContext()  , " Clicked on :: " + headerInfo.getcountryName()
+                        + "/" +detailInfo.getStartDate()+"/"+ detailInfo.getAgency()+"/"+  +detailInfo.getPrice(), Toast.LENGTH_LONG).show();
+               */
+                return false;
+            }
+
+        });
+        // setOnGroupClickListener listener for group heading click
+        exp_agencies.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                //get the group header
+                GroupAgency headerInfo = agencyGroupList.get(groupPosition);
+                //display it or do something with it
+                /*
+                Toast.makeText(secondAppActivity.context.getApplicationContext(), " Header is :: " + headerInfo.getcountryName(),
+                        Toast.LENGTH_LONG).show();
+
+                */
+                return false;
+            }
+        });
+
+        return view;
     }
+
+    private void expandAll() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++){
+            exp_agencies.expandGroup(i);
+        }
+    }
+    private void collapseAll() {
+        int count = listAdapter.getGroupCount();
+        for (int i = 0; i < count; i++){
+            exp_agencies.collapseGroup(i);
+        }
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

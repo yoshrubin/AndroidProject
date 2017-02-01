@@ -14,7 +14,7 @@ public class GroupAgency {
         return this.agencyName;
     }
 
-    public void setAgencyNameName(String AName){
+    public void setAgencyName(String AName){
         this.agencyName=AName;
     }
 

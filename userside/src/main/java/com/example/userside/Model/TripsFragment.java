@@ -70,7 +70,6 @@ public class TripsFragment extends android.app.Fragment {
     public static TripsFragment newInstance(String param1, String param2) {
         TripsFragment fragment = new TripsFragment();
         Bundle args = new Bundle();
-
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -93,7 +92,6 @@ public class TripsFragment extends android.app.Fragment {
     }
 
     private void loadData() {
-
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         Action action;
@@ -106,7 +104,7 @@ public class TripsFragment extends android.app.Fragment {
             addTrip(action.getCountry(),startDate,endDate,action.getUser(),(float)action.getPrice());
         }
     }
-    //here we maintain our products in various departments
+
     //private int addTrip(String country, Date startD, Date endD, String agency, float price) {
     private int addTrip(String country, String startD, String endD, String agency, float price) {
 
