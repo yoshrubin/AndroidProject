@@ -61,7 +61,7 @@ public class agencyExpandListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getGroup(int groupPosition) {
-        return groupAgencies.size();
+        return groupAgencies.get(groupPosition);
     }
 
     /**
