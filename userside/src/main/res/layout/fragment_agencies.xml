@@ -1,8 +1,9 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.userside.Model.AgenciesFragment">
+    tools:context="com.example.userside.Model.AgenciesFragment"
+    android:id="@+id/frame_container_agency">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -19,4 +20,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</FrameLayout>

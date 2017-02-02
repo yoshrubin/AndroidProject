@@ -2,6 +2,7 @@ package com.example.userside.Model;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.userside.Backend.DB.TripGroupFilter;
 import com.example.userside.Backend.DB.listDB;
 import com.example.userside.Backend.Entitites.Action;
+import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.adapters.tripExpandListAdapter;
 import com.example.userside.Backend.expendableList.ChildTrip;
 import com.example.userside.Backend.expendableList.GroupTrip;
@@ -289,7 +291,43 @@ public class TripsFragment extends android.app.Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
 
+    public void updateView() {
+        getListAsyncTask();
+    }
 
+    private void getListAsyncTask() {
+        class myTask extends AsyncTask<Void, Void, Void> {
+            ArrayList<Action> newList = new ArrayList<>();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                if(exp_trips != null)
+                    exp_trips.setVisibility(View.GONE);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    newList = dbList.getAttractionList();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (exp_trips != null)
+                    exp_trips.setVisibility(View.VISIBLE);
+                if (listAdapter != null)
+                    refreshAdapter(listAdapter, actionList, newList);
+            }
+        }
+        myTask task = new myTask();
+        task.execute();
     }
 }

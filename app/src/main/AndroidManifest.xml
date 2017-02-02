@@ -22,6 +22,7 @@
             android:name=".Model.Service.service"
             android:enabled="true"
             android:exported="true" />
+
         <activity android:name=".Controller.AddWindow" />
         <activity android:name=".Controller.AddActionWindow" />
         <activity android:name=".Controller.LoginActivity">

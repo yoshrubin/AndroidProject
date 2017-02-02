@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -24,6 +25,7 @@ import com.example.userside.Backend.expendableList.ChildAgency;
 import com.example.userside.Backend.expendableList.GroupAgency;
 import com.example.userside.R;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -54,7 +56,7 @@ public class AgenciesFragment extends android.app.Fragment {
 
     public listDB dbList = new listDB();
     public ArrayList<Business> businessList = new ArrayList<>();
-    private ArrayList<Business> beforeFilterList = new ArrayList<>();
+    private ArrayList<GroupAgency> beforeFilterList = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -245,17 +247,14 @@ public class AgenciesFragment extends android.app.Fragment {
         ArrayList list = new ArrayList();
         //saving current list
         beforeFilterList.clear();
-        beforeFilterList.addAll(businessList);
+        beforeFilterList.addAll(agencyGroupList);
 
-        list.addAll(businessList);
+        list.addAll(agencyGroupList);
         BusinessFilter filter = new BusinessFilter(s, list);
-        ArrayList<Business> newList;
+        ArrayList<GroupAgency> newList;
         try {
             newList = filter.Filter();
-            businessList.addAll(newList);
-            agencyGroupList.clear();
-            subjects.clear();
-            setNewItems(agencyGroupList, subjects);
+            TripsFragment.refreshAdapter(listAdapter, agencyGroupList, newList);
         } catch (Exception e) {
             Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT);
         }
@@ -265,10 +264,7 @@ public class AgenciesFragment extends android.app.Fragment {
         if (beforeFilterList.size() == 0)
             if (businessList.size() != 0)
                 return;
-        businessList.addAll(beforeFilterList);
-        agencyGroupList.clear();
-        subjects.clear();
-        setNewItems(agencyGroupList,subjects);
+        refreshAdapter(listAdapter, agencyGroupList, beforeFilterList);
     }
 
     public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
@@ -328,5 +324,39 @@ public class AgenciesFragment extends android.app.Fragment {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto", email, null));
         curr.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+    }
+
+    public void updateView() {
+        getListAsyncTask();
+    }
+
+    private void getListAsyncTask() {
+        class myTask extends AsyncTask<Void, Void, Void> {
+            ArrayList<Business> newList = new ArrayList<>();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                if(exp_agencies != null)
+                    exp_agencies.setVisibility(View.GONE);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                    newList = dbList.getBusinessList();
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (exp_agencies != null)
+                    exp_agencies.setVisibility(View.VISIBLE);
+                if (listAdapter != null)
+                    refreshAdapter(listAdapter, businessList, newList);
+            }
+        }
+        myTask task = new myTask();
+        task.execute();
     }
 }
