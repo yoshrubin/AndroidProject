@@ -39,6 +39,11 @@ public class secondAppActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //check
+        Intent intent = new Intent();
+        intent.setAction("com.project.CHECK_DATABASE");
+        sendBroadcast(intent);
+        //check
         PublicObjects.start = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_app);
@@ -126,9 +131,11 @@ public class secondAppActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        /*
         if (id == R.id.action_settings) {
             return true;
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }
@@ -176,5 +183,8 @@ public class secondAppActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
+
     }
+
 }
