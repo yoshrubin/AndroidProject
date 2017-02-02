@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -40,9 +42,8 @@ public class secondAppActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //check
-        Intent intent = new Intent();
-        intent.setAction("com.project.CHECK_DATABASE");
-        sendBroadcast(intent);
+        //Intent intent = new Intent("com.project.CHECK_DATABASE");
+        //this.sendBroadcast(intent);
         //check
         PublicObjects.start = this;
         super.onCreate(savedInstanceState);
@@ -62,10 +63,10 @@ public class secondAppActivity extends AppCompatActivity
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public boolean onQueryTextSubmit(String query) {
-                android.support.v4.app.Fragment current = getSupportFragmentManager().findFragmentByTag("buss");
                 if (PublicObjects.BussFrag != null) {
+                    android.app.Fragment current = PublicObjects.currentFrag;
                     //found it business
-                    if (current != null) {
+                    if (current.getId() == PublicObjects.BussFrag.getId()) {
                         //resetting the list
                         //PublicObjects.BussFrag.updateView();
                         PublicObjects.BussFrag.clearFilter();
@@ -74,7 +75,7 @@ public class secondAppActivity extends AppCompatActivity
                     }
                 }
                 if (PublicObjects.AttFrag != null) {
-                    current = getSupportFragmentManager().findFragmentByTag("att");
+                    android.app.Fragment current = PublicObjects.currentFrag;
                     if (current.getId() == PublicObjects.AttFrag.getId()) {
                         //resetting the list
                         //PublicObjects.AttFrag.updateView();
@@ -150,22 +151,24 @@ public class secondAppActivity extends AppCompatActivity
         if (id == R.id.nav_agencies) {
 
             setTitle("All the agencies");
-            android.app.Fragment f4 = new AgenciesFragment();
+            android.app.Fragment f4 = PublicObjects.getBusinessFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.content_second_app, f4); // f2_container is your FrameLayout container
             //Toast.makeText(getApplicationContext(), "I'M the agencies fragment", Toast.LENGTH_LONG).show();
             ft.commit();
+            PublicObjects.currentFrag =  f4;
 
 
 
 
         } else if (id == R.id.nav_trips) {
-            android.app.Fragment f5 = new TripsFragment();
+            android.app.Fragment f5 = PublicObjects.getAttractionFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             setTitle("All the trips");
             ft.replace(R.id.content_second_app, f5); // f2_container is your FrameLayout container
             //Toast.makeText(getApplicationContext(), "I'M the Trip fragment", Toast.LENGTH_LONG).show();
             ft.commit();
+            PublicObjects.currentFrag =  f5;
 
         } else if (id == R.id.nav_exit) {
 

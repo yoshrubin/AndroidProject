@@ -17,7 +17,7 @@ public class PublicObjects {
     public static secondAppActivity start = null;
     public static TripsFragment AttFrag = null;
     public static AgenciesFragment BussFrag = null;
-    public static Fragment currentFrag = null;
+    public static android.app.Fragment currentFrag = null;
 
     public static TripsFragment getAttractionFragment(){
         if(AttFrag == null)
@@ -29,7 +29,7 @@ public class PublicObjects {
             BussFrag = new AgenciesFragment();
         return BussFrag;
     }
-    public static Fragment getCurrentFrag(){
+    public static android.app.Fragment getCurrentFrag(){
         return currentFrag;
     }
 }

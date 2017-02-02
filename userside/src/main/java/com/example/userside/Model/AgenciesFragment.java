@@ -16,10 +16,8 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.userside.Backend.DB.ActionFilter;
 import com.example.userside.Backend.DB.BusinessFilter;
 import com.example.userside.Backend.DB.listDB;
-import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.adapters.agencyExpandListAdapter;
 import com.example.userside.Backend.expendableList.ChildAgency;

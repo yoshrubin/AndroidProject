@@ -13,7 +13,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.example.userside.Backend.DB.ActionFilter;
+import com.example.userside.Backend.DB.TripGroupFilter;
 import com.example.userside.Backend.DB.listDB;
 import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.adapters.tripExpandListAdapter;
@@ -39,7 +39,7 @@ public class TripsFragment extends android.app.Fragment {
 
     public listDB dbList = new listDB();
     public ArrayList<Action> actionList = new ArrayList<>();
-    private ArrayList<Action> beforeFilterList = new ArrayList<>();
+    private ArrayList<GroupTrip> beforeFilterList = new ArrayList<>();
 
     private LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
     private ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
@@ -163,7 +163,7 @@ public class TripsFragment extends android.app.Fragment {
         exp_trips = (ExpandableListView) view.findViewById(R.id.exp_trips);
 
         // create the adapter by passing your ArrayList data
-        listAdapter = new tripExpandListAdapter(secondAppActivity.context,tripGroupList );
+        listAdapter = new tripExpandListAdapter(secondAppActivity.context,tripGroupList);
 
         // attach the adapter to the expandable list view
         exp_trips.setAdapter(listAdapter);
@@ -248,14 +248,14 @@ public class TripsFragment extends android.app.Fragment {
         ArrayList list = new ArrayList();
         //saving current list
         beforeFilterList.clear();
-        beforeFilterList.addAll(actionList);
+        beforeFilterList.addAll(tripGroupList);
 
-        list.addAll(actionList);
-        ActionFilter filter = new ActionFilter(s, list);
-        ArrayList<Action> newList;
+        list.addAll(tripGroupList);
+        TripGroupFilter filter = new TripGroupFilter(s, list);
+        ArrayList<GroupTrip> newList;
         try {
             newList = filter.Filter();
-            TripsFragment.refreshAdapter(listAdapter, actionList, newList);
+            TripsFragment.refreshAdapter(listAdapter, tripGroupList, newList);
         } catch (Exception e) {
             Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT);
         }
@@ -265,7 +265,7 @@ public class TripsFragment extends android.app.Fragment {
         if (beforeFilterList.size() == 0)
             if (actionList.size() != 0)
                 return;
-        refreshAdapter(listAdapter, actionList, beforeFilterList);
+        refreshAdapter(listAdapter, tripGroupList, beforeFilterList);
     }
 
     public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {

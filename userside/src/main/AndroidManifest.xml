@@ -17,7 +17,7 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.project.CHECK_DATABASE"></action>
+                <action android:name="com.project.CHECK_DATABASE"/>
             </intent-filter>
         </receiver>
 
