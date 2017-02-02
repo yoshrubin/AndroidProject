@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.userside.R;
-
+//DON'T PAY ATTENTION TO THIS ACTIVITY, IT IS NOT AN ACTUAL PART OF THE PROJECT.
 public class MainActivity extends Activity {
 
     @Override

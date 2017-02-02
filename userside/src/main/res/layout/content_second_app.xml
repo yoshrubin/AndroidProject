@@ -13,4 +13,24 @@
     tools:context="com.example.userside.Model.secondAppActivity"
     tools:showIn="@layout/app_bar_second_app">
 
+    <TextView
+        android:text="Welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:id="@+id/textView2"
+        android:textStyle="bold"
+        android:textSize="26dp"
+        />
+
+    <TextView
+        android:text="press on the toolbar to start..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="79dp"
+        android:id="@+id/textView3" />
 </RelativeLayout>

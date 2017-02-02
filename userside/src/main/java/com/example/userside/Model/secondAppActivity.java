@@ -153,7 +153,7 @@ public class secondAppActivity extends AppCompatActivity
             android.app.Fragment f4 = new AgenciesFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.content_second_app, f4); // f2_container is your FrameLayout container
-            Toast.makeText(getApplicationContext(), "I'M the agencies fragment", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "I'M the agencies fragment", Toast.LENGTH_LONG).show();
             ft.commit();
 
 
@@ -164,7 +164,7 @@ public class secondAppActivity extends AppCompatActivity
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             setTitle("All the trips");
             ft.replace(R.id.content_second_app, f5); // f2_container is your FrameLayout container
-            Toast.makeText(getApplicationContext(), "I'M the Trip fragment", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "I'M the Trip fragment", Toast.LENGTH_LONG).show();
             ft.commit();
 
         } else if (id == R.id.nav_exit) {

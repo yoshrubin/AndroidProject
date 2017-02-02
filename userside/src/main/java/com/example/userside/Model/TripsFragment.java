@@ -57,6 +57,8 @@ public class TripsFragment extends android.app.Fragment {
     private String mParam1;
     private String mParam2;
 
+
+
     private OnFragmentInteractionListener mListener;
 
     public TripsFragment() {
@@ -178,8 +180,9 @@ public class TripsFragment extends android.app.Fragment {
                 //get the child info
                 ChildTrip detailInfo =  headerInfo.gettripDetails().get(childPosition);
                 //display it or do something with it
-                Toast.makeText(secondAppActivity.context.getApplicationContext()  , " Clicked on :: " + headerInfo.getcountryName()
+                /*Toast.makeText(secondAppActivity.context.getApplicationContext()  , " Clicked on :: " + headerInfo.getcountryName()
                         + "/" +detailInfo.getStartDate()+"/"+ detailInfo.getAgency()+"/"+  +detailInfo.getPrice(), Toast.LENGTH_LONG).show();
+                */
                 return false;
             }
         });
@@ -191,9 +194,9 @@ public class TripsFragment extends android.app.Fragment {
                 //get the group header
                 GroupTrip headerInfo = tripGroupList.get(groupPosition);
                 //display it or do something with it
-                Toast.makeText(secondAppActivity.context.getApplicationContext(), " Header is :: " + headerInfo.getcountryName(),
+                /*Toast.makeText(secondAppActivity.context.getApplicationContext(), " Header is :: " + headerInfo.getcountryName(),
                         Toast.LENGTH_LONG).show();
-
+*/
                 return false;
             }
         });
