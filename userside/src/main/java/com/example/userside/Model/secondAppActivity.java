@@ -4,9 +4,12 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +25,7 @@ import android.widget.Toast;
 import com.example.userside.Backend.Factory.Backend;
 import com.example.userside.Backend.Factory.BackendFactory;
 import com.example.userside.Backend.Factory.Delegate;
+import com.example.userside.Backend.adapters.PublicObjects;
 import com.example.userside.R;
 
 import static android.os.SystemClock.sleep;
@@ -29,30 +33,66 @@ import static android.os.SystemClock.sleep;
 public class secondAppActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static Context context;
+    SearchView searchView;
     Backend db;
-    public static Context context ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PublicObjects.start = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_app);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        searchView = (SearchView) findViewById(R.id.searchView);
         setSupportActionBar(toolbar);
         context = getApplicationContext();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                android.support.v4.app.Fragment current = getSupportFragmentManager().findFragmentByTag("buss");
+                if (PublicObjects.BussFrag != null) {
+                    //found it business
+                    if (current != null) {
+                        //resetting the list
+                        //PublicObjects.BussFrag.updateView();
+                        PublicObjects.BussFrag.clearFilter();
+                        PublicObjects.BussFrag.Filter(query.toString());
+                        return true;
+                    }
+                }
+                if (PublicObjects.AttFrag != null) {
+                    current = getSupportFragmentManager().findFragmentByTag("att");
+                    if (current.getId() == PublicObjects.AttFrag.getId()) {
+                        //resetting the list
+                        //PublicObjects.AttFrag.updateView();
+                        PublicObjects.AttFrag.clearFilter();
+                        PublicObjects.AttFrag.Filter(query.toString());
+                        return true;
+                    }
+                }
+                Snackbar.make(searchView, "Please Select a category from the Notification Drawer", Snackbar.LENGTH_LONG);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()) {
+                    if (PublicObjects.currentFrag.equals(PublicObjects.BussFrag) && PublicObjects.BussFrag != null)
+                        PublicObjects.BussFrag.clearFilter();
+                    if (PublicObjects.currentFrag.equals(PublicObjects.AttFrag) && PublicObjects.AttFrag != null)
+                        PublicObjects.AttFrag.clearFilter();
+                }
+                return true;
+            }
+        });
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -100,8 +140,6 @@ public class secondAppActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-
-
         if (id == R.id.nav_agencies) {
 
             setTitle("All the agencies");
@@ -110,6 +148,8 @@ public class secondAppActivity extends AppCompatActivity
             ft.replace(R.id.content_second_app, f4); // f2_container is your FrameLayout container
             Toast.makeText(getApplicationContext(), "I'M the agencies fragment", Toast.LENGTH_LONG).show();
             ft.commit();
+
+
 
 
         } else if (id == R.id.nav_trips) {

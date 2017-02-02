@@ -1,6 +1,8 @@
 package com.example.userside.Backend.Entitites;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by yoshi on 11/20/16.
@@ -8,6 +10,9 @@ import java.util.Date;
 
 public class Action {
     public enum Attraction {HOTEL,TRAVEL_AGENCY,ENTERTAINMENT,FLIGHTS}
+
+    String myFormat = "dd/MM/yy"; //In which you need put here
+    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
     private Attraction attraction;
     private String country;
@@ -28,6 +33,10 @@ public class Action {
         this.IDN = IDN;
         this.user = user;
 
+    }
+
+    public static String[] getColumns(){
+        return new String[]{"attraction", "country", "startDate", "endDate", "price", "description", "IDN", "user"};
     }
 
     public Attraction getAttraction() {
@@ -92,6 +101,29 @@ public class Action {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getValue(String Col) throws Exception {
+        switch (Col){
+            case "attraction":
+                return getAttraction().toString();
+            case "country":
+                return getCountry();
+            case "startDate":
+                return sdf.format(getStartDate());
+            case "endDate":
+                return sdf.format(getEndDate());
+            case "price":
+                return Double.toString(getPrice());
+            case "description":
+                return getDescription();
+            case "IDN":
+                return Integer.toString(getIDN());
+            case "user":
+                return getUser();
+            default:
+                throw new Exception("Column doesn't Exist");
+        }
     }
 
     @Override

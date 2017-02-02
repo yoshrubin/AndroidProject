@@ -15,9 +15,11 @@ import com.example.userside.Backend.Entitites.User;
 import com.example.userside.Backend.Factory.Backend;
 import com.example.userside.Model.secondAppActivity;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -29,10 +31,10 @@ public class listDB implements Backend{
     Cursor busMatrix;
     Cursor actMatrix;
     ContentResolver resolver;
-    static ArrayList<Business> businessList = new ArrayList<>();
-    static ArrayList<Action> actionList = new ArrayList<>();
-    static ArrayList<Action> actionBusinessList = new ArrayList<>();
-    static ArrayList<Business> businessCountryList = new ArrayList<>();
+    public ArrayList<Business> businessList = new ArrayList<>();
+    public ArrayList<Action> actionList = new ArrayList<>();
+    public ArrayList<Action> actionBusinessList = new ArrayList<>();
+    public ArrayList<Business> businessCountryList = new ArrayList<>();
 
     static Uri actUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/actions");
     static Uri busUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/business");

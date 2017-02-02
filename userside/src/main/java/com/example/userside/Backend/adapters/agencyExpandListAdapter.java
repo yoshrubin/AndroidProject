@@ -1,45 +1,42 @@
 package com.example.userside.Backend.adapters;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListAdapter;
 import android.widget.TextView;
 
-import com.example.userside.Backend.expendableList.ChildTrip;
-import com.example.userside.Backend.expendableList.GroupTrip;
+import com.example.userside.Backend.expendableList.ChildAgency;
+import com.example.userside.Backend.expendableList.GroupAgency;
 import com.example.userside.R;
 
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 
 /**
- * Created by Aviv on 29/01/2017.
+ * Created by Aviv on 01/02/2017.
  */
 
-public class tripExpandListAdapter extends BaseExpandableListAdapter {
+public class agencyExpandListAdapter extends BaseExpandableListAdapter {
+
 
     private Context context;
-    private ArrayList<GroupTrip> groupTrips;
-    public tripExpandListAdapter(Context context,ArrayList<GroupTrip> groupTrips){
+    private ArrayList<GroupAgency> groupAgencies;
+    public agencyExpandListAdapter(Context context,ArrayList<GroupAgency> groupAgencies){
         this.context=context;
-        this.groupTrips=groupTrips;
+        this.groupAgencies=groupAgencies;
     }
+
 
     /**
      * Gets the number of groups.
      *
      * @return the number of groups
      */
+
     @Override
     public int getGroupCount() {
-        return groupTrips.size();
+        return groupAgencies.size();
     }
 
     /**
@@ -49,10 +46,11 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
      *                      count should be returned
      * @return the children count in the specified group
      */
+
     @Override
     public int getChildrenCount(int groupPosition) {
-        ArrayList<ChildTrip> childTrips = groupTrips.get(groupPosition).gettripDetails();
-        return  childTrips.size();
+        ArrayList<ChildAgency> childAgencies = groupAgencies.get(groupPosition).getAgencyDetails();
+        return childAgencies.size();
     }
 
     /**
@@ -63,13 +61,22 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public Object getGroup(int groupPosition) {
-        return groupTrips.get(groupPosition);
+        return groupAgencies.get(groupPosition);
     }
 
+    /**
+     * Gets the data associated with the given child within the given group.
+     *
+     * @param groupPosition the position of the group that the child resides in
+     * @param childPosition the position of the child with respect to other
+     *                      children in the group
+     * @return the data of the child
+     */
+
     @Override
-    public Object getChild(int groupPosition, int childPosition){
-        ArrayList<ChildTrip> childTrips=groupTrips.get(groupPosition).gettripDetails();
-        return childTrips.get(childPosition);
+    public Object getChild(int groupPosition, int childPosition) {
+        ArrayList<ChildAgency> childAgencies=groupAgencies.get(groupPosition).getAgencyDetails();
+        return childAgencies.get(childPosition);
     }
 
     /**
@@ -83,7 +90,7 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
      */
     @Override
     public long getGroupId(int groupPosition) {
-        return groupPosition;
+         return groupPosition;
     }
 
     /**
@@ -107,7 +114,6 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
      * underlying data.
      *
      * @return whether or not the same ID always refers to the same object
-     * @see Adapter#hasStableIds()
      */
     @Override
     public boolean hasStableIds() {
@@ -132,15 +138,17 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
      * @param parent        the parent that this view will eventually be attached to
      * @return the View corresponding to the group at the specified position
      */
+
+
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-       GroupTrip groupTrip=(GroupTrip) getGroup(groupPosition);
+        GroupAgency groupAgency=(GroupAgency)getGroup(groupPosition);
         if(convertView==null){
             LayoutInflater inf =(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView=inf.inflate(R.layout.group_trip_item,null);
+            convertView=inf.inflate(R.layout.group_agency_item,null);
         }
-        TextView country=(TextView)convertView.findViewById(R.id.trip_dest);
-        country.setText(groupTrip.getcountryName());
+        TextView agencyName=(TextView)convertView.findViewById(R.id.agency_name);
+        agencyName.setText(groupAgency.getAgencyName());
         return convertView;
     }
 
@@ -162,10 +170,7 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
      * @param parent        the parent that this view will eventually be attached to
      * @return the View corresponding to the child at the specified position
      */
-    @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-
-        ChildTrip childTrip=(ChildTrip)getChild(groupPosition,childPosition);
+    /*ChildTrip childTrip=(ChildTrip)getChild(groupPosition,childPosition);
 
         if(convertView==null){
             LayoutInflater inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -183,7 +188,22 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
         TextView price =(TextView)convertView.findViewById(R.id.entred_price_trip_exp);
         price.setText(String.valueOf(childTrip.getPrice()));
 
+        return convertView;*/
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        ChildAgency childAgency=(ChildAgency)getChild(groupPosition,childPosition);
+        if(convertView==null){
+            LayoutInflater inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            convertView=inflater.inflate(R.layout.child_ageny_item,null);
+        }
+        TextView location =(TextView)convertView.findViewById(R.id.entred_location_agency_exp);
+        location.setText(childAgency.getAgencyLocation());
+        TextView email =(TextView)convertView.findViewById(R.id.entred_mail_agency_exp);
+        email.setText(childAgency.getAgencyMail());
+        TextView website =(TextView)convertView.findViewById(R.id.entred_site_agency_exp);
+        website.setText(childAgency.getAgencyWebsite());
         return convertView;
+
     }
 
     /**
@@ -196,10 +216,5 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
-    }
-
-    public void setNewItems(ArrayList<GroupTrip> groupTrips) {
-        this.groupTrips = groupTrips;
-        notifyDataSetChanged();
     }
 }

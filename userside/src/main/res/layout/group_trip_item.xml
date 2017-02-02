@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="55dip"
-    android:orientation="vertical">
-    <TextView
-    android:id="@+id/trip_dest"
-    android:layout_width="wrap_content"
+android:layout_width="match_parent"
+android:layout_height="60dp"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="vertical"
+    android:background="@android:color/darker_gray">
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="25dp"
-    android:textSize="25dp"
-        android:textStyle="bold"/>
+    android:layout_marginBottom="2dp"
+    android:background="@android:color/white">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:srcCompat="@mipmap/trip"
+            android:id="@+id/imageViewAtt" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/trip_dest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="Hey"
+            android:gravity="center"/>
+    </LinearLayout>
+</LinearLayout>
 </LinearLayout>

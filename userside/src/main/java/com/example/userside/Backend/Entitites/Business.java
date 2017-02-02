@@ -1,10 +1,13 @@
 package com.example.userside.Backend.Entitites;
 
+import java.io.Serializable;
+import java.net.IDN;
+
 /**
  * Created by yoshi on 11/20/16.
  */
 
-public class Business {
+public class Business implements Serializable {
     private int IDN;
     private String name;
     private String country;
@@ -27,6 +30,10 @@ public class Business {
         this.email = email;
         this.site = site;
         this.user = user;
+    }
+
+    public static String[] getColumns(){
+        return new String[]{"IDN", "name", "country", "city", "street", "housenum", "phoneNum", "email", "site", "user"};
     }
 
     public int getIDN() {
@@ -107,6 +114,33 @@ public class Business {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getValue(String Col) throws Exception {
+        switch (Col){
+            case "IDN":
+                return Integer.toString(getIDN());
+            case "name":
+                return getName();
+            case "country":
+                return getCountry();
+            case "city":
+                return getCity();
+            case "street":
+                return getStreet();
+            case "housenum":
+                return Integer.toString(getHousenum());
+            case "phoneNum":
+                return getPhoneNum();
+            case "email":
+                return getEmail();
+            case "site":
+                return getSite();
+            case "user":
+                return getUser();
+            default:
+                throw new Exception("Column doesn't Exist");
+        }
     }
 
     @Override
