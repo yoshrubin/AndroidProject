@@ -9,15 +9,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.userside.Backend.adapters.PublicObjects;
-import com.example.userside.Model.MainActivity;
+
+import com.example.userside.Model.secondAppActivity;
 import com.example.userside.R;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
-/**
- * Created by yoshi on 1/4/17.
- */
-
+//this our broadcast receiver
 
 public class reciever extends BroadcastReceiver {
     public reciever() {
@@ -27,9 +25,9 @@ public class reciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-        Toast.makeText(context,"Intent Received",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"Intent Received",Toast.LENGTH_SHORT).show();
         Log.d("second app: ", "broadcast received");
-        Intent intnt = new Intent(context,MainActivity.class);
+        Intent intnt = new Intent(context,secondAppActivity.class);
         intnt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //context.startActivity(intnt);
         addNotification(context);

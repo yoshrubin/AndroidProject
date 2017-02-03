@@ -6,9 +6,7 @@
          import java.security.acl.Group;
          import java.util.ArrayList;
          
-         /**
-   * Created by yoshi on 2/1/17.
-   */
+        //this is an implementation of filter for businesses so it will be searchable
          
          public class BusinessFilter extends ListFilter<GroupAgency>{
      

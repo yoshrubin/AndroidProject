@@ -5,9 +5,7 @@ import android.database.Cursor;
 
 import java.text.ParseException;
 
-/**
- * Created by yoshi on 11/25/16.
- *
+/*
  * We Use the IdataSource to get/store data into our DS regardless of which it is
  */
 

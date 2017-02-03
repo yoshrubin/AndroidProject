@@ -16,10 +16,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
-/**
- * Created by yoshi on 11/25/16.
- */
 
+/*
+* this class implements the IDataSource interface we created.
+* this class act as implantation of local DB of lists.
+* */
 public class ListDataSource implements IDataSource {
 
     private static ArrayList<Action> actionList = new ArrayList<>();

@@ -19,9 +19,11 @@ import java.util.Random;
 
 import static com.example.yoshi.funtimes.Controller.AddActionWindow.COUNTRIES;
 
+// This class defines the add business window in the first app which bounded to activity_add_business_window.XML
+
 public class AddBusinessWindow extends Activity {
 
-    int IDN;
+    int IDN;//business's serial number
     String name;
     String country;
     String city;
@@ -32,7 +34,7 @@ public class AddBusinessWindow extends Activity {
     String site;
     String user;
     Cursor myCursor;
-    protected static int IDNrange=100;
+    protected static int IDNrange=100;//a var that helps to determine business IDN when added
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +58,7 @@ public class AddBusinessWindow extends Activity {
         do{
             Random r = new Random();
             IDN = r.nextInt(IDNrange);
-            /*AsyncQuery dbQuery = new AsyncQuery();
-            dbQuery.execute(ContentProvide.BUSINESS_URI,IDN,this);
-            myCursor = dbQuery.mCursor;*/
+
             myCursor=getContentResolver().query(
                     ContentProvide.BUSINESS_URI,
                     null,
@@ -89,7 +89,7 @@ public class AddBusinessWindow extends Activity {
             flag=false;
             return;
         }
-        //phonenum
+        //phone-number
         try{
         EditText phonenum = (EditText) findViewById(R.id.phonenumEdit);
         phoneNum = phonenum.getText().toString();
@@ -211,7 +211,7 @@ public class AddBusinessWindow extends Activity {
         AsyncInsert dbInsert = new AsyncInsert();
         dbInsert.execute( ContentProvide.BUSINESS_URI, business, this);
 
-        Intent myIntent = new Intent(this, AddActionWindow.class);
+        Intent myIntent = new Intent(this, AddActionWindow.class);//get as moved automatically to AddAction process
         myIntent.putExtra("user", user);
         startActivity(myIntent);
     }

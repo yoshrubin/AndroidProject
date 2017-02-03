@@ -1,8 +1,6 @@
 package com.example.yoshi.funtimes.Model.Entitites;
 
-/**
- * Created by yoshi on 11/20/16.
- */
+//this class defines Business Entity
 
 public class Business {
     private int IDN;

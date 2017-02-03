@@ -1,8 +1,6 @@
 package com.example.userside.Backend.Entitites;
 
-/**
- * Created by yoshi on 11/20/16.
- */
+//this class defines User Entity for the use of the second app
 
 public class User {
 

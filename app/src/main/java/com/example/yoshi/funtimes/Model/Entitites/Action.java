@@ -1,10 +1,7 @@
 package com.example.yoshi.funtimes.Model.Entitites;
 
 import java.util.Date;
-
-/**
- * Created by yoshi on 11/20/16.
- */
+//this class defines Action Entity
 
 public class Action {
     public enum Attraction {HOTEL,TRAVEL_AGENCY,ENTERTAINMENT,FLIGHTS}

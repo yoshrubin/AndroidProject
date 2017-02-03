@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 
+//this is where we define the Agency Fragment, bounded with fragment_agencies.XML
+
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the

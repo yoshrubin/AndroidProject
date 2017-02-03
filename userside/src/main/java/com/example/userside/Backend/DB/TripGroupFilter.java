@@ -6,9 +6,8 @@ import com.example.userside.Backend.expendableList.GroupTrip;
 import java.security.acl.Group;
 import java.util.ArrayList;
 
-/**
- * Created by yoshi on 2/1/17.
- */
+//this is an implementation of filter for trips so it will be searchable
+
 
 public class TripGroupFilter extends ListFilter<GroupTrip>{
 

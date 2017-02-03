@@ -29,6 +29,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+//this is where we define the Agency Fragment, bounded with fragment_trips.XML
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the

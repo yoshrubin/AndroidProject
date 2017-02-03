@@ -8,9 +8,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by yoshi on 12/14/16.
- */
+
 
 public class AsyncInsert extends AsyncTask<Object,Void,Void>{
 

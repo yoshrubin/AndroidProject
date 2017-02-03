@@ -13,10 +13,7 @@ import com.example.userside.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Aviv on 01/02/2017.
- */
-
+//this is our Expendable list adapter of agencies
 public class agencyExpandListAdapter extends BaseExpandableListAdapter {
 
 
@@ -170,25 +167,7 @@ public class agencyExpandListAdapter extends BaseExpandableListAdapter {
      * @param parent        the parent that this view will eventually be attached to
      * @return the View corresponding to the child at the specified position
      */
-    /*ChildTrip childTrip=(ChildTrip)getChild(groupPosition,childPosition);
 
-        if(convertView==null){
-            LayoutInflater inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView=inflater.inflate(R.layout.child_trip_item,null);
-        }
-        TextView startDate =(TextView)convertView.findViewById(R.id.entered_startdate_trip_exp);
-        startDate.setText(childTrip.getStartDate());
-
-        TextView endDate =(TextView)convertView.findViewById(R.id.entred_enddate_trip_exp);
-        endDate.setText(childTrip.getEndDate().toString());
-
-        TextView agency =(TextView)convertView.findViewById(R.id.entred_agency_trip_exp);
-        agency.setText(childTrip.getAgency().toString());
-
-        TextView price =(TextView)convertView.findViewById(R.id.entred_price_trip_exp);
-        price.setText(String.valueOf(childTrip.getPrice()));
-
-        return convertView;*/
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildAgency childAgency=(ChildAgency)getChild(groupPosition,childPosition);

@@ -15,10 +15,8 @@ import com.example.yoshi.funtimes.Model.Backend.ManagerFactory;
 import java.text.ParseException;
 import java.util.Objects;
 
-/**
- * Created by yoshi on 11/25/16.
- */
 
+//This our content provider, this where we putting all the overrides needed to implement ContentProvider
 public class ContentProvide extends ContentProvider {
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     private static IDataSource manager = ManagerFactory.getDB();//lll
@@ -46,71 +44,6 @@ public class ContentProvide extends ContentProvider {
         return true;
     }
 
-    /*
-    public Cursor query(Uri uri, String[] strings, String s, String[] strings1, String s1) {//TODO implement the selection (with argument s)
-
-         ///### The uri.getPath() function returns the path with the preceding "/", if you want to get rid of it you can simply
-         ///use the substring function  as shown below.
-
-
-        String table = uri.getPath().substring(1);//TODO why there is substring(1)
-        if (table.equalsIgnoreCase("business")&& s==null) {
-            try {
-                return manager.getBusinessDS();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        if (table.equalsIgnoreCase("business")) {
-            try {
-                return manager.getBusinessByString(s);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        if (table.equalsIgnoreCase("users")&& s==null) {
-            try {
-                return manager.getUsersDS();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-        if (table.equalsIgnoreCase("users")) {
-            try {
-                return manager.getUserByString(s);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-        else if (table.equalsIgnoreCase("actions") && s==null) {
-            try {
-                return manager.getActionsDS();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        else if (table.equalsIgnoreCase("actions")) {
-            try {
-                return manager.getActionByString(s);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-        return null;
-    }
-*/
-        /*
-    The function returns a cursor containing a table of agencies or trips according to the given uri
-    */
 
     @Nullable
     @Override

@@ -1,8 +1,6 @@
 package com.example.yoshi.funtimes.Model.Entitites;
 
-/**
- * Created by yoshi on 11/20/16.
- */
+//this class defines User Entity
 
 public class User {
 

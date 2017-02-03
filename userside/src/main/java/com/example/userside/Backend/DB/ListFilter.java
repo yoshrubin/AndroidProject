@@ -8,9 +8,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by yoshi on 1/23/17.
- */
+
 
 public abstract class ListFilter<Input> {
     String searchInput;

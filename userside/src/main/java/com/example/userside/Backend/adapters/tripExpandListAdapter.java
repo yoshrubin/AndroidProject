@@ -19,9 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-/**
- * Created by Aviv on 29/01/2017.
- */
+//this is our Expendable list adapter of trips
 
 public class tripExpandListAdapter extends BaseExpandableListAdapter {
 

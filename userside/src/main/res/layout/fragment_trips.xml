@@ -8,16 +8,17 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <ExpandableListView
-        android:id="@+id/exp_trips"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:background="#ffffff">
+
+        <ExpandableListView
+            android:id="@+id/exp_trips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </FrameLayout>

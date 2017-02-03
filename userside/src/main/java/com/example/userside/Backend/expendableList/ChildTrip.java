@@ -2,36 +2,15 @@ package com.example.userside.Backend.expendableList;
 
 import java.util.Date;
 
-/**
- * Created by Aviv on 25/01/2017.
- */
+//this is a class that defines what will be contained in the child of the Expendable list of trips
 
 public class ChildTrip {
-    //private Date startDate;
-    //private Date endDate;
     private String startDate;
     private String endDate;
     private String agency;
     private float price;
 
 
-    /*
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-    */
     public String getStartDate() {
         return startDate;
     }

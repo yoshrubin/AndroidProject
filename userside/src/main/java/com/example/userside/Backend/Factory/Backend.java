@@ -6,10 +6,7 @@ import com.example.userside.Backend.Entitites.Business;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-/**
- * Created by yoshi on 1/26/17.
- */
-
+//our local lists which used in the second app
 public interface Backend {
     ArrayList<Business> getBusinessList();
     ArrayList<Action> getAttractionList() throws ParseException;

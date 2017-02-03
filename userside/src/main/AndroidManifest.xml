@@ -8,9 +8,6 @@
         android:label="Client app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Model.MainActivity">
-
-        </activity>
 
         <receiver
             android:name=".Backend.reciever"

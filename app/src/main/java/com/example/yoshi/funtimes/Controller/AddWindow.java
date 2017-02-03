@@ -9,7 +9,8 @@ import android.widget.Button;
 
 import com.example.yoshi.funtimes.Model.DataSources.ContentProvide;
 import com.example.yoshi.funtimes.R;
-
+//this class is responsible for the first and main activity(window) got opened right after regular log in.
+//bounded with add_window.XML
 public class AddWindow extends Activity {
 
     static String user;
@@ -40,14 +41,14 @@ public class AddWindow extends Activity {
 
 
 
-    public void addBusinessClick(View view) {
+    public void addBusinessClick(View view) {//first button
         //TODO startActivity(new Intent(AddWindow.this,MActivity.class));
         Intent myIntent = new Intent(AddWindow.this, AddBusinessWindow.class);
         myIntent.putExtra("user",user);
         startActivity(myIntent);
     }
 
-    public void addActivityClick(View view) {
+    public void addActivityClick(View view) {//second button
         Intent myIntent = new Intent(AddWindow.this, AddActionWindow.class);
         myIntent.putExtra("user",user);
         startActivity(myIntent);

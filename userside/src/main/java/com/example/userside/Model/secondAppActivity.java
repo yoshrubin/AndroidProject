@@ -31,6 +31,8 @@ import com.example.userside.Backend.adapters.PublicObjects;
 import com.example.userside.R;
 
 import static android.os.SystemClock.sleep;
+//this is the class that defines our only activity in the second app
+//bounded with activity_second_app.XML
 
 public class secondAppActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

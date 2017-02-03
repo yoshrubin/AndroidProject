@@ -1,9 +1,6 @@
 package com.example.userside.Backend.expendableList;
 
-/**
- * Created by Aviv on 01/02/2017.
- */
-
+//this is a class that defines what will be contained in the child of the Expendable list of agencies
 public class ChildAgency {
     private String agencyName;
     private String agencyLocation;

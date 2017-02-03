@@ -31,6 +31,9 @@ import java.util.Random;
 
 import static com.example.yoshi.funtimes.Controller.AddBusinessWindow.IDNrange;
 
+/*
+* This class defines the add action window in the first app which bounded to add_action_window.XML
+* */
 public class AddActionWindow extends Activity {
 
     Spinner spinnerAction;
@@ -44,7 +47,7 @@ public class AddActionWindow extends Activity {
     String description;
     int IDN;
 
-    Calendar myCalendar = Calendar.getInstance();
+    Calendar myCalendar = Calendar.getInstance();//[its a var that needed for our date picker]
 
     EditText startEdit, endEdit;
     /**
@@ -65,12 +68,6 @@ public class AddActionWindow extends Activity {
         startEdit=(EditText)findViewById(R.id.startEdit);
         endEdit=(EditText)findViewById(R.id.endEdit);
 
-        /*
-        EditText localStartEdit = (EditText) findViewById(R.id.startEdit);
-        EditText localEndEdit = (EditText) findViewById(R.id.endEdit);
-        Date startEditTest= (Date)localStartEdit.getText();
-        Date endEditTest=(Date)localEndEdit.getText();
-        */
 
         datePickerPopup();
         //region Attraction Spinner Create
@@ -119,7 +116,7 @@ public class AddActionWindow extends Activity {
 
 
 
-    //region Countries list
+    //region Countries list which going to be chosen from auto-complete text
     public static final String[] COUNTRIES = new String[]{
 
             "Afghanistan",
@@ -362,6 +359,7 @@ public class AddActionWindow extends Activity {
     //endregion
 
 
+    //those are functions that needed to be here so the datePicker will work
     private void datePickerPopup() {
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -410,6 +408,7 @@ public class AddActionWindow extends Activity {
             endEdit.setText(sdf.format(myCalendar.getTime()));
     }
 
+    //this is a function that bounds with the XML
     public void addActionClick(View view) throws Exception {
 
         String myFormat = "dd/MM/yyyy"; //In which you need put here
@@ -460,9 +459,7 @@ public class AddActionWindow extends Activity {
         /*
         For IDN I will get same IDN as business it was created for
          */
-            /*AsyncQuery dbQuery = new AsyncQuery();
-            dbQuery.execute(ContentProvide.ACTION_URI,IDN,this);
-            myCursor = dbQuery.mCursor;*/
+
         Cursor myCursor;
         myCursor = getContentResolver().query(
                 ContentProvide.BUSINESS_URI,

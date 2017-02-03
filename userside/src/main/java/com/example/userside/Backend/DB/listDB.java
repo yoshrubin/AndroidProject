@@ -23,9 +23,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-/**
- * Created by yoshi on 1/12/17.
- */
+//this is a DB for our second app and it acts as a local DB.
 
 public class listDB implements Backend{
     Cursor busMatrix;

@@ -25,9 +25,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-/**
- * Created by yoshi on 11/27/16.
- */
+/*
+* this class implements the IDataSource interface we created.
+* this class act as implantation of remote DB of SQL.
+* */
 
 @SuppressWarnings("ALL")
 public class RemoteDataSource implements IDataSource {

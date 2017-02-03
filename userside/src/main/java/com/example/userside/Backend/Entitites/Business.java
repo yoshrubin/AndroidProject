@@ -3,9 +3,7 @@ package com.example.userside.Backend.Entitites;
 import java.io.Serializable;
 import java.net.IDN;
 
-/**
- * Created by yoshi on 11/20/16.
- */
+///this class defines Business Entity for the use of the second app
 
 public class Business implements Serializable {
     private int IDN;

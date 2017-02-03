@@ -16,7 +16,8 @@ import com.example.yoshi.funtimes.Model.DataSources.ContentProvide;
 import com.example.yoshi.funtimes.R;
 
 import static com.example.yoshi.funtimes.Controller.LoginActivity.MY_PREFS_NAME;
-
+//this class responsible on Register window that got summoned from Login window
+//bounded with activity_register.XML
 public class Register extends Activity {
 
     Cursor myCursor = null;
@@ -40,6 +41,7 @@ public class Register extends Activity {
         String passwordTest=password.getText().toString();
         String confirmPasswordTest=confirmPassword.getText().toString();
 
+        //checks of user and password input
         if(usernameTest.equals("")){
             Toast.makeText(getApplicationContext(),"username field is empty",Toast.LENGTH_LONG).show();
             flag=false;
@@ -69,9 +71,7 @@ public class Register extends Activity {
             return;
         }
         if(flag){
-           /*AsyncQuery dbQuery = new AsyncQuery();
-           dbQuery.execute(ContentProvide.USER_URI,username.getText().toString(),this);
-           myCursor = dbQuery.mCursor;*/
+
             myCursor=getContentResolver().query(
                     ContentProvide.USER_URI,
                     null,

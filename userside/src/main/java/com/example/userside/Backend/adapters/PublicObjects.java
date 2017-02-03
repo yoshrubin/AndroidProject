@@ -6,14 +6,9 @@ import com.example.userside.Model.AgenciesFragment;
 import com.example.userside.Model.TripsFragment;
 import com.example.userside.Model.secondAppActivity;
 
-/**
- * Created by yoshi on 2/1/17.
- */
 
 public class PublicObjects {
-    /**
-     *
-     */
+
     public static secondAppActivity start = null;
     public static TripsFragment AttFrag = null;
     public static AgenciesFragment BussFrag = null;

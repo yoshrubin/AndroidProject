@@ -2,9 +2,8 @@ package com.example.userside.Backend.Factory;
 
 import com.example.userside.Backend.DB.listDB;
 
-/**
- * Created by yoshi on 1/26/17.
- */
+
+//a Singleton that determines what DB will be used in the second app
 
 public class BackendFactory {
         static Backend instance = null;

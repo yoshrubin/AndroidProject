@@ -9,9 +9,7 @@ import android.widget.Toast;
 import com.example.yoshi.funtimes.Model.Backend.IDataSource;
 import com.example.yoshi.funtimes.Model.Backend.ManagerFactory;
 
-/**
- * Created by yoshi on 12/22/16.
- */
+//this is our Service which checks every 4 sec if there are any changes in our DB
 
 public class service extends Service {
     IDataSource db;

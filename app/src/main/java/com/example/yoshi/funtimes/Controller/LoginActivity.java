@@ -18,6 +18,8 @@ import com.example.yoshi.funtimes.R;
 
 /**
  * A login screen that offers login via user/password.
+ * AND the first window/activity got opened.
+ * bounded with login_window.XML
  */
 public class LoginActivity extends Activity {
 
@@ -100,7 +102,7 @@ public class LoginActivity extends Activity {
 
     }
 
-    public void registerClicked(View view) {
+    public void registerClicked(View view) {//Register button
         Intent myIntent = new Intent(this, Register.class);
         startActivity(myIntent);
     }
