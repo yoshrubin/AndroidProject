@@ -43,6 +43,7 @@ import java.util.Locale;
 public class TripsFragment extends android.app.Fragment {
 
     public listDB dbList = new listDB();
+    public ArrayList<Business> businessList = new ArrayList<>();
     public ArrayList<Action> actionList = new ArrayList<>();
     private ArrayList<GroupTrip> beforeFilterList = new ArrayList<>();
 
@@ -101,6 +102,7 @@ public class TripsFragment extends android.app.Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        businessList.addAll(dbList.getBusinessList());
     }
 
     private void loadData() {
@@ -110,10 +112,15 @@ public class TripsFragment extends android.app.Fragment {
         String startDate, endDate;
 
         for (int i = 0; i < actionList.size(); i++){
+            String agency = "N/A";
             action = actionList.get(i);
+            for (int j = 0; j < businessList.size(); j++){
+                if (action.getIDN() == businessList.get(j).getIDN())
+                    agency = businessList.get(j).getName();
+            }
             startDate = sdf.format(action.getStartDate());
             endDate = sdf.format(action.getEndDate());
-            addTrip(action.getCountry(),startDate,endDate,action.getUser(),(float)action.getPrice());
+            addTrip(action.getCountry(),startDate,endDate, agency,(float)action.getPrice());
         }
     }
 

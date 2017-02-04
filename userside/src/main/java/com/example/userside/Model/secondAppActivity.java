@@ -2,17 +2,11 @@ package com.example.userside.Model;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,18 +15,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
+
+import com.example.userside.Backend.DB.TimeUpdate;
 import com.example.userside.Backend.Factory.Backend;
 import com.example.userside.Backend.Factory.BackendFactory;
-import com.example.userside.Backend.Factory.Delegate;
 import com.example.userside.Backend.adapters.PublicObjects;
 import com.example.userside.R;
 
-import static android.os.SystemClock.sleep;
-//this is the class that defines our only activity in the second app
-//bounded with activity_second_app.XML
+
 
 public class secondAppActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,13 +32,10 @@ public class secondAppActivity extends AppCompatActivity
     public static Context context;
     SearchView searchView;
     Backend db;
+    TimeUpdate update = new TimeUpdate();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //check
-        //Intent intent = new Intent("com.project.CHECK_DATABASE");
-        //this.sendBroadcast(intent);
-        //check
         PublicObjects.start = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second_app);
@@ -54,6 +43,8 @@ public class secondAppActivity extends AppCompatActivity
         searchView = (SearchView) findViewById(R.id.searchView);
         setSupportActionBar(toolbar);
         context = getApplicationContext();
+
+        update.execute();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

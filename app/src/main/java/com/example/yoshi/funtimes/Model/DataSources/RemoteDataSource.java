@@ -35,12 +35,20 @@ public class RemoteDataSource implements IDataSource {
 
     private static JSONObject business;
     private static final String WEB_URL = "http://rubinj.vlab.jct.ac.il";
-    private java.util.Date currentBusinessTimestamp;
-    private java.util.Date currentAttractionTimestamp;
+    //private java.util.Date currentBusinessTimestamp;
+    private java.util.Date lastUpdatedTimestamp;
 
     public RemoteDataSource(){
-        currentBusinessTimestamp = new java.util.Date();
-        currentAttractionTimestamp = new java.util.Date();
+        //currentBusinessTimestamp = new java.util.Date();
+        try {
+            JSONObject array = new JSONObject(GET(WEB_URL + "/getLastUpdateTime.php"));
+            String ts = array.getString("last_update");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
+            java.util.Date lastUpdatedTimestamp = dateFormat.parse(ts);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static String GET(String url) throws Exception {
@@ -320,12 +328,14 @@ public class RemoteDataSource implements IDataSource {
     public boolean newBusiness() {
         JSONObject array = null;
         try {
+            JSONObject array1 = new JSONObject(GET(WEB_URL + "/getLastUpdateTime.php"));
+            String timeStamp = array1.getString("last_update");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
+            java.util.Date lastUpdatedTimestamp = dateFormat.parse(timeStamp);
             array = new JSONObject(GET(WEB_URL + "/getTimeBusiness.php"));
             String ts = array.getString("last_update");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", Locale.US);
             java.util.Date d = dateFormat.parse(ts);
-            if(d.after(currentBusinessTimestamp)) {
-                currentBusinessTimestamp = d;
+            if(d.after(lastUpdatedTimestamp)) {
                 return true;
             }
             return false;
@@ -337,14 +347,16 @@ public class RemoteDataSource implements IDataSource {
 
     @Override
     public boolean newAction() {
-        JSONObject array = null;
+        //JSONObject array = null;
         try {
-            array = new JSONObject(GET(WEB_URL + "/getTimeAttraction.php"));
+            JSONObject array1 = new JSONObject(GET(WEB_URL + "/getLastUpdateTime.php"));
+            String timeStamp = array1.getString("last_update");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US);
+            java.util.Date lastUpdatedTimestamp = dateFormat.parse(timeStamp);
+            JSONObject array = new JSONObject(GET(WEB_URL + "/getTimeAttraction.php"));
             String ts = array.getString("last_update");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss", Locale.US);
             java.util.Date d = dateFormat.parse(ts);
-            if(d.after(currentAttractionTimestamp)) {
-                currentAttractionTimestamp = d;
+            if(d.after(lastUpdatedTimestamp)) {
                 return true;
             }
             return false;

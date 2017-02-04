@@ -50,9 +50,12 @@ public class service extends Service {
 
     boolean running = true;
 
+    /*
+
+     */
     private void checkForChange() throws InterruptedException {
         while (running) {
-            if (true) {
+            if (db.newAction() || db.newBusiness()) {
                 broadcastIntent();
             }
             Log.d("service: ", "running");
