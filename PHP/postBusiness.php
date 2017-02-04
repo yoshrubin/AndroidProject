@@ -22,7 +22,7 @@ $email = $_REQUEST["email"];
 $site = $_REQUEST["site"];
 $user = $_REQUEST["user"];
 $sql = "INSERT INTO `rubinj_aviv`.`business_table` (`IDN`, `name`,
-`country`, `city`, `street`, `housenum`, `phoneNum`, `email`, `site`, `user`) VALUES (\"$idn\",\"$name\", \"$country\", \"$city\", \"$street\", \"$housenum\", \"$phoneNum\", \"$email\",\"$site\", \"$user\")";
+`country`, `city`, `street`, `housenum`, `phoneNum`, `email`, `site`, `user`, `last_update`) VALUES (\"$idn\",\"$name\", \"$country\", \"$city\", \"$street\", \"$housenum\", \"$phoneNum\", \"$email\",\"$site\", \"$user\", CURRENT_TIMESTAMP)";
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 } else {

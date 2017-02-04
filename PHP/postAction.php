@@ -20,7 +20,7 @@ $description = $_REQUEST["description"];
 $idn = $_REQUEST["IDN"];
 $user = $_REQUEST["user"];
 $sql = "INSERT INTO `rubinj_aviv`.`action_table` (`attraction`,
-`country`, `startdate`, `enddate`, `price`, `description`, `IDN`, `user`) VALUES (\"$attraction\", \"$country\", \"$startdate\", \"$enddate\", \"$price\", \"$description\", \"$idn\", \"$user\")";
+`country`, `startdate`, `enddate`, `price`, `description`, `IDN`, `user`, `last_update`) VALUES (\"$attraction\", \"$country\", \"$startdate\", \"$enddate\", \"$price\", \"$description\", \"$idn\", \"$user\", CURRENT_TIMESTAMP)";
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
