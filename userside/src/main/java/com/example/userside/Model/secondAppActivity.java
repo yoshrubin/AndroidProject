@@ -44,8 +44,6 @@ public class secondAppActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         context = getApplicationContext();
 
-        update.execute();
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -108,6 +106,12 @@ public class secondAppActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onStart();
+        update.execute();
     }
 
     @Override
