@@ -110,7 +110,7 @@ public class secondAppActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
-        super.onStart();
+        super.onResume();
         update.execute();
     }
 
