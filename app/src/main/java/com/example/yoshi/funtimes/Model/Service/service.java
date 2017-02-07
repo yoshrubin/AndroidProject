@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.yoshi.funtimes.Model.Backend.IDataSource;
 import com.example.yoshi.funtimes.Model.Backend.ManagerFactory;
@@ -12,9 +11,9 @@ import com.example.yoshi.funtimes.Model.Backend.ManagerFactory;
 //this is our Service which checks every 4 sec if there are any changes in our DB
 
 public class service extends Service {
-    IDataSource db;
+    private final IDataSource db;
     private final int timeToSleep = 4000;
-    Thread background;
+    private final Thread background;
 
     public service() {
         db = ManagerFactory.getDB();
@@ -48,7 +47,7 @@ public class service extends Service {
         stopCheck();
     }
 
-    boolean running = true;
+    private boolean running = true;
 
     /*
 
@@ -63,7 +62,7 @@ public class service extends Service {
         }
     }
 
-    public void broadcastIntent() {
+    private void broadcastIntent() {
         Intent intent = new Intent();
         intent.setAction("com.project.CHECK_DATABASE");
         sendBroadcast(intent);

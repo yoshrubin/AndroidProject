@@ -25,7 +25,6 @@ import com.example.userside.Backend.expendableList.ChildAgency;
 import com.example.userside.Backend.expendableList.GroupAgency;
 import com.example.userside.R;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -56,9 +55,9 @@ public class AgenciesFragment extends android.app.Fragment {
     private String mParam1;
     private String mParam2;
 
-    public listDB dbList = new listDB();
-    public ArrayList<Business> businessList = new ArrayList<>();
-    private ArrayList<GroupAgency> beforeFilterList = new ArrayList<>();
+    private final listDB dbList = new listDB();
+    private final ArrayList<Business> businessList = new ArrayList<>();
+    private final ArrayList<GroupAgency> beforeFilterList = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -228,17 +227,6 @@ public class AgenciesFragment extends android.app.Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-       /* if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -258,7 +246,7 @@ public class AgenciesFragment extends android.app.Fragment {
             newList = filter.Filter();
             TripsFragment.refreshAdapter(listAdapter, agencyGroupList, newList);
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -269,7 +257,7 @@ public class AgenciesFragment extends android.app.Fragment {
         refreshAdapter(listAdapter, agencyGroupList, beforeFilterList);
     }
 
-    public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
+    private static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
         originList.clear();
         originList.addAll(newList);
         ad.notifyDataSetChanged();
@@ -301,13 +289,13 @@ public class AgenciesFragment extends android.app.Fragment {
      * @param current
      * @param website
      */
-    public static void WebsiteIntet(Activity current, String website){
+    private static void WebsiteIntet(Activity current, String website){
         current.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://" +website)));
     }
     /**
      * all the intents when clicked on certain data
      */
-    public static void MapsIntent(Activity curr,String city){
+    private static void MapsIntent(Activity curr, String city){
         Intent Chooser;
         String url = "http://maps.google.com/maps?daddr="+city;
         Intent iintent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
@@ -317,7 +305,7 @@ public class AgenciesFragment extends android.app.Fragment {
     /**
      * all the intents when clicked on certain data
      */
-    public static void EmailIntent(Activity curr,String email){
+    private static void EmailIntent(Activity curr, String email){
         if(!email.matches(".+@.+[.]com"))
             if(!email.contains("@"))
                 email += "@gmail.com";

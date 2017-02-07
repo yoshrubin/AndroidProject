@@ -5,18 +5,17 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.SearchView;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 
 import com.example.userside.Backend.DB.TimeUpdate;
 import com.example.userside.Backend.Factory.Backend;
@@ -30,9 +29,9 @@ public class secondAppActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static Context context;
-    SearchView searchView;
-    Backend db;
-    TimeUpdate update = new TimeUpdate();
+    private SearchView searchView;
+    private Backend db;
+    private final TimeUpdate update = new TimeUpdate();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

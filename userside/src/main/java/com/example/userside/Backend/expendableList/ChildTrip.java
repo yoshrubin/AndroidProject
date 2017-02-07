@@ -1,7 +1,5 @@
 package com.example.userside.Backend.expendableList;
 
-import java.util.Date;
-
 //this is a class that defines what will be contained in the child of the Expendable list of trips
 
 public class ChildTrip {

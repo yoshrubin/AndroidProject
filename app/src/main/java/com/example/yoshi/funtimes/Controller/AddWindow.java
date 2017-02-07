@@ -13,8 +13,8 @@ import com.example.yoshi.funtimes.R;
 //bounded with add_window.XML
 public class AddWindow extends Activity {
 
-    static String user;
-    static Cursor myCursor;
+    private static String user;
+    private static Cursor myCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

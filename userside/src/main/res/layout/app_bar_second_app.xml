@@ -21,8 +21,8 @@
         <android.support.v7.widget.SearchView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:gravity="right"
+            android:layout_gravity="end"
+            android:gravity="end"
             android:id="@+id/searchView">
         </android.support.v7.widget.SearchView>
     </android.support.v7.widget.Toolbar>

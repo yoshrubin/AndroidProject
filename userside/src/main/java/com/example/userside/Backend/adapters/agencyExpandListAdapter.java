@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class agencyExpandListAdapter extends BaseExpandableListAdapter {
 
 
-    private Context context;
-    private ArrayList<GroupAgency> groupAgencies;
+    private final Context context;
+    private final ArrayList<GroupAgency> groupAgencies;
     public agencyExpandListAdapter(Context context,ArrayList<GroupAgency> groupAgencies){
         this.context=context;
         this.groupAgencies=groupAgencies;
@@ -141,7 +141,7 @@ public class agencyExpandListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         GroupAgency groupAgency=(GroupAgency)getGroup(groupPosition);
         if(convertView==null){
-            LayoutInflater inf =(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inf =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView=inf.inflate(R.layout.group_agency_item,null);
         }
         TextView agencyName=(TextView)convertView.findViewById(R.id.agency_name);
@@ -172,7 +172,7 @@ public class agencyExpandListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildAgency childAgency=(ChildAgency)getChild(groupPosition,childPosition);
         if(convertView==null){
-            LayoutInflater inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.child_ageny_item,null);
         }
         TextView location =(TextView)convertView.findViewById(R.id.entred_location_agency_exp);

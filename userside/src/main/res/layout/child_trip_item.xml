@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="2">
+    android:weightSum="2"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -12,7 +13,6 @@
         android:weightSum="4"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/startdate_trip_exp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -20,7 +20,6 @@
             android:padding="10dp"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/enddate_trip_exp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,7 +28,6 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/agency_trip_exp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -38,7 +36,6 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/price_trip_exp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

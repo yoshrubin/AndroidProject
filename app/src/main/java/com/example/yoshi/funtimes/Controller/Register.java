@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.yoshi.funtimes.Model.Backend.AsyncInsert;
-import com.example.yoshi.funtimes.Model.Backend.AsyncQuery;
 import com.example.yoshi.funtimes.Model.DataSources.ContentProvide;
 import com.example.yoshi.funtimes.R;
 
@@ -20,8 +19,8 @@ import static com.example.yoshi.funtimes.Controller.LoginActivity.MY_PREFS_NAME;
 //bounded with activity_register.XML
 public class Register extends Activity {
 
-    Cursor myCursor = null;
-    boolean flag=true;
+    private Cursor myCursor = null;
+    private boolean flag=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

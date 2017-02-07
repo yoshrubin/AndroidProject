@@ -2,7 +2,6 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_add_business_window"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightBackground"
@@ -19,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="70"
         android:orientation="horizontal"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -30,11 +30,8 @@
 
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_weight="1"
                 android:text="Enter business name:"
                 android:textColor="@color/darkBlue"
@@ -42,11 +39,8 @@
                 android:textStyle="normal|bold" />
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="25dp"
                 android:layout_weight="1"
                 android:text="Enter your country:"
@@ -57,8 +51,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:text="Enter your business city:"
@@ -69,8 +61,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="11dp"
                 android:layout_weight="1"
                 android:text="Enter business street:"
@@ -81,8 +71,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="11dp"
                 android:layout_weight="1"
                 android:text="Enter business house number:"
@@ -93,8 +81,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="11dp"
                 android:layout_weight="1"
                 android:text="enter business' email:"
@@ -103,11 +89,8 @@
                 android:textStyle="normal|bold" />
 
             <TextView
-                android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="11dp"
                 android:layout_weight="1"
                 android:text="enter business phone number:"
@@ -118,8 +101,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="11dp"
                 android:layout_weight="1"
                 android:text="Enter business website:"
@@ -141,8 +122,6 @@
                 android:id="@+id/nameEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_weight="1"
                 android:hint="name"
                 android:inputType="textPersonName"
@@ -154,8 +133,6 @@
                 android:id="@+id/countryEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/nameEdit"
-                android:layout_below="@+id/nameEdit"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="country"
@@ -168,9 +145,6 @@
                 android:id="@+id/cityEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/countryEdit"
-                android:layout_alignStart="@+id/countryEdit"
-                android:layout_below="@+id/countryEdit"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="city"
@@ -183,8 +157,6 @@
                 android:id="@+id/streetEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/housenumEdit"
-                android:layout_alignStart="@+id/cityEdit"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="street"
@@ -197,8 +169,6 @@
                 android:id="@+id/housenumEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/phonenumEdit"
-                android:layout_alignStart="@+id/phonenumEdit"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="house number"
@@ -211,9 +181,6 @@
                 android:id="@+id/emailEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/siteEdit"
-                android:layout_alignEnd="@+id/streetEdit"
-                android:layout_alignStart="@+id/streetEdit"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="example@.com"
@@ -239,8 +206,6 @@
                 android:id="@+id/siteEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/addBusinessButton"
-                android:layout_alignEnd="@+id/emailEdit"
                 android:layout_alignStart="@+id/addBusinessButton"
                 android:layout_weight="1"
                 android:hint="www.example.com"

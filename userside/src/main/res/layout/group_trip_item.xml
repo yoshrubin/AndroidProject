@@ -15,11 +15,11 @@ android:orientation="vertical"
         android:layout_height="match_parent"
         android:gravity="center">
         <ImageView
+            android:contentDescription="Trip-Icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            app:srcCompat="@mipmap/trip"
-            android:id="@+id/imageViewAtt" />
+            app:srcCompat="@mipmap/trip" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

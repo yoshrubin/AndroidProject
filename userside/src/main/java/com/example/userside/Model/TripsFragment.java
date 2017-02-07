@@ -42,13 +42,13 @@ import java.util.Locale;
  */
 public class TripsFragment extends android.app.Fragment {
 
-    public listDB dbList = new listDB();
-    public ArrayList<Business> businessList = new ArrayList<>();
-    public ArrayList<Action> actionList = new ArrayList<>();
-    private ArrayList<GroupTrip> beforeFilterList = new ArrayList<>();
+    private final listDB dbList = new listDB();
+    private final ArrayList<Business> businessList = new ArrayList<>();
+    private final ArrayList<Action> actionList = new ArrayList<>();
+    private final ArrayList<GroupTrip> beforeFilterList = new ArrayList<>();
 
-    private LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
-    private ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
+    private final LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
+    private final ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
 
     private tripExpandListAdapter listAdapter;
     private ExpandableListView exp_trips;
@@ -124,7 +124,6 @@ public class TripsFragment extends android.app.Fragment {
         }
     }
 
-    //private int addTrip(String country, Date startD, Date endD, String agency, float price) {
     private int addTrip(String country, String startD, String endD, String agency, float price) {
 
         int groupPosition = 0;
@@ -239,17 +238,6 @@ public class TripsFragment extends android.app.Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-/*        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -269,7 +257,7 @@ public class TripsFragment extends android.app.Fragment {
             newList = filter.Filter();
             TripsFragment.refreshAdapter(listAdapter, tripGroupList, newList);
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(), "Error Parsing Query", Toast.LENGTH_SHORT).show();
         }
     }
 

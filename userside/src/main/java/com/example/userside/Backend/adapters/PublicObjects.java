@@ -1,7 +1,5 @@
 package com.example.userside.Backend.adapters;
 
-import android.support.v4.app.Fragment;
-
 import com.example.userside.Model.AgenciesFragment;
 import com.example.userside.Model.TripsFragment;
 import com.example.userside.Model.secondAppActivity;

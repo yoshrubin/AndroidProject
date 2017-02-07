@@ -16,7 +16,7 @@ public class AsyncInsert extends AsyncTask<Object,Void,Void>{
     private Uri uri;
     private ContentValues value;
     private Context context;
-    boolean ifError=false;
+    private boolean ifError=false;
 
     @Override
     protected void onProgressUpdate(Void... values) {

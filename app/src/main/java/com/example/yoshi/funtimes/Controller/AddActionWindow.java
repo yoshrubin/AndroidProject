@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -20,36 +19,33 @@ import com.example.yoshi.funtimes.Model.DataSources.ContentProvide;
 import com.example.yoshi.funtimes.Model.Entitites.Action;
 import com.example.yoshi.funtimes.R;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
-
-import static com.example.yoshi.funtimes.Controller.AddBusinessWindow.IDNrange;
 
 /*
 * This class defines the add action window in the first app which bounded to add_action_window.XML
 * */
 public class AddActionWindow extends Activity {
 
-    Spinner spinnerAction;
-    Action.Attraction attraction;
-    Spinner spinnerBusiness;
+    private Spinner spinnerAction;
+    private Action.Attraction attraction;
+    private Spinner spinnerBusiness;
 
-    String country;
-    Date startDate;
-    Date endDate;
-    double price;
-    String description;
-    int IDN;
+    private String country;
+    private Date startDate;
+    private Date endDate;
+    private double price;
+    private String description;
+    private int IDN;
 
-    Calendar myCalendar = Calendar.getInstance();//[its a var that needed for our date picker]
+    private final Calendar myCalendar = Calendar.getInstance();//[its a var that needed for our date picker]
 
-    EditText startEdit, endEdit;
+    private EditText startEdit;
+    private EditText endEdit;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -99,6 +95,7 @@ public class AddActionWindow extends Activity {
             businessList.add(myCursor.getString(1));
             myCursor.moveToNext();
         }
+        myCursor.close();
         ArrayAdapter<String> newDataAdapter = new ArrayAdapter<>
                 (this, android.R.layout.simple_spinner_item, businessList);
         newDataAdapter.setDropDownViewResource
@@ -472,6 +469,8 @@ public class AddActionWindow extends Activity {
 
         IDN = myCursor.getInt(0);
         String user = getIntent().getStringExtra("user");
+
+        myCursor.close();
 
         ContentValues action = new ContentValues();
         action.put("attraction", String.valueOf(attraction));

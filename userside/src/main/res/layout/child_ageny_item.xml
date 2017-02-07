@@ -3,7 +3,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="2">
+    android:weightSum="2"
+    android:baselineAligned="false">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +14,6 @@
         android:background="@android:color/darker_gray">
 
         <TextView
-            android:id="@+id/location_agency_exp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -25,7 +25,6 @@
             android:layout_marginBottom="1px"/>
 
         <TextView
-            android:id="@+id/mail_agency_exp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -36,7 +35,6 @@
             android:background="@android:color/white"
             android:layout_marginBottom="1px"/>
         <TextView
-            android:id="@+id/site_agency_exp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

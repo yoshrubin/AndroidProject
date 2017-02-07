@@ -23,18 +23,18 @@ import static com.example.yoshi.funtimes.Controller.AddActionWindow.COUNTRIES;
 
 public class AddBusinessWindow extends Activity {
 
-    int IDN;//business's serial number
-    String name;
-    String country;
-    String city;
-    String street;
-    int housenum;
-    String phoneNum;
-    String email;
-    String site;
-    String user;
-    Cursor myCursor;
-    protected static int IDNrange=100;//a var that helps to determine business IDN when added
+    private int IDN;//business's serial number
+    private String name;
+    private String country;
+    private String city;
+    private String street;
+    private int housenum;
+    private String phoneNum;
+    private String email;
+    private String site;
+    private String user;
+    private Cursor myCursor;
+    private static final int IDNrange=100;//a var that helps to determine business IDN when added
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

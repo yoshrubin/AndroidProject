@@ -23,9 +23,9 @@ import java.util.Objects;
 * */
 public class ListDataSource implements IDataSource {
 
-    private static ArrayList<Action> actionList = new ArrayList<>();
-    private static ArrayList<Business> businessList = new ArrayList<>();
-    private static ArrayList<User> userList = new ArrayList<>();
+    private static final ArrayList<Action> actionList = new ArrayList<>();
+    private static final ArrayList<Business> businessList = new ArrayList<>();
+    private static final ArrayList<User> userList = new ArrayList<>();
 
     /*
     * We will be using these when we implement the query function in ContentProvide

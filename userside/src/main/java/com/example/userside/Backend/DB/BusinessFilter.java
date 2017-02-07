@@ -1,10 +1,8 @@
  package com.example.userside.Backend.DB;
 
-         import com.example.userside.Backend.Entitites.Business;
-         import com.example.userside.Backend.expendableList.GroupAgency;
-         
-         import java.security.acl.Group;
-         import java.util.ArrayList;
+ import com.example.userside.Backend.expendableList.GroupAgency;
+
+ import java.util.ArrayList;
          
         //this is an implementation of filter for businesses so it will be searchable
          

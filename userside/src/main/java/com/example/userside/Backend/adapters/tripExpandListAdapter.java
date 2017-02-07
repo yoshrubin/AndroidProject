@@ -6,24 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListAdapter;
 import android.widget.TextView;
 
 import com.example.userside.Backend.expendableList.ChildTrip;
 import com.example.userside.Backend.expendableList.GroupTrip;
 import com.example.userside.R;
 
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 //this is our Expendable list adapter of trips
 
 public class tripExpandListAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
+    private final Context context;
     private ArrayList<GroupTrip> groupTrips;
     public tripExpandListAdapter(Context context,ArrayList<GroupTrip> groupTrips){
         this.context=context;
@@ -134,7 +130,7 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
        GroupTrip groupTrip=(GroupTrip) getGroup(groupPosition);
         if(convertView==null){
-            LayoutInflater inf =(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inf =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView=inf.inflate(R.layout.group_trip_item,null);
         }
         TextView country=(TextView)convertView.findViewById(R.id.trip_dest);
@@ -166,7 +162,7 @@ public class tripExpandListAdapter extends BaseExpandableListAdapter {
         ChildTrip childTrip=(ChildTrip)getChild(groupPosition,childPosition);
 
         if(convertView==null){
-            LayoutInflater inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView=inflater.inflate(R.layout.child_trip_item,null);
         }
         TextView startDate =(TextView)convertView.findViewById(R.id.entered_startdate_trip_exp);

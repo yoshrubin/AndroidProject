@@ -1,47 +1,38 @@
 package com.example.userside.Backend.DB;
 
-import android.content.ContentProviderClient;
 import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.net.Uri;
-import android.os.RemoteException;
 
-import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.Entitites.Action;
-import com.example.userside.Backend.Entitites.User;
+import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.Factory.Backend;
 import com.example.userside.Model.secondAppActivity;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 //this is a DB for our second app and it acts as a local DB.
 
 public class listDB implements Backend{
-    Cursor busMatrix;
-    Cursor actMatrix;
+    private Cursor busMatrix;
+    private Cursor actMatrix;
     ContentResolver resolver;
-    public ArrayList<Business> businessList = new ArrayList<>();
-    public ArrayList<Action> actionList = new ArrayList<>();
-    public ArrayList<Action> actionBusinessList = new ArrayList<>();
-    public ArrayList<Business> businessCountryList = new ArrayList<>();
+    private ArrayList<Business> businessList = new ArrayList<>();
+    private ArrayList<Action> actionList = new ArrayList<>();
+    private final ArrayList<Action> actionBusinessList = new ArrayList<>();
+    private final ArrayList<Business> businessCountryList = new ArrayList<>();
 
-    static Uri actUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/actions");
-    static Uri busUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/business");
+    private static final Uri actUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/actions");
+    private static final Uri busUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/business");
 
     //ContentProviderClient actResolver = secondAppActivity.context.getContentResolver().acquireContentProviderClient(actUri);
    // ContentProviderClient busResolver = secondAppActivity.context.getContentResolver().acquireContentProviderClient(busUri);
 
-    ContentResolver actResolver = secondAppActivity.context.getContentResolver();
-    ContentResolver busResolver = actResolver;
+    private final ContentResolver actResolver = secondAppActivity.context.getContentResolver();
+    private final ContentResolver busResolver = actResolver;
     public listDB(){
 
     }

@@ -9,8 +9,8 @@ import java.util.Locale;
 public class Action {
     public enum Attraction {HOTEL,TRAVEL_AGENCY,ENTERTAINMENT,FLIGHTS}
 
-    String myFormat = "dd/MM/yy"; //In which you need put here
-    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+    private final String myFormat = "dd/MM/yy"; //In which you need put here
+    private final SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
     private Attraction attraction;
     private String country;
@@ -37,7 +37,7 @@ public class Action {
         return new String[]{"attraction", "country", "startDate", "endDate", "price", "description", "IDN", "user"};
     }
 
-    public Attraction getAttraction() {
+    private Attraction getAttraction() {
         return attraction;
     }
 
@@ -77,7 +77,7 @@ public class Action {
         this.price = price;
     }
 
-    public String getDescription() {
+    private String getDescription() {
         return description;
     }
 
@@ -93,7 +93,7 @@ public class Action {
         this.IDN = IDN;
     }
 
-    public String getUser() {
+    private String getUser() {
         return user;
     }
 

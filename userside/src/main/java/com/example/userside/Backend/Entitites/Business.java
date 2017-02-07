@@ -1,7 +1,6 @@
 package com.example.userside.Backend.Entitites;
 
 import java.io.Serializable;
-import java.net.IDN;
 
 ///this class defines Business Entity for the use of the second app
 
@@ -58,7 +57,7 @@ public class Business implements Serializable {
         this.country = country;
     }
 
-    public String getCity() {
+    private String getCity() {
         return city;
     }
 
@@ -66,7 +65,7 @@ public class Business implements Serializable {
         this.city = city;
     }
 
-    public String getStreet() {
+    private String getStreet() {
         return street;
     }
 
@@ -74,7 +73,7 @@ public class Business implements Serializable {
         this.street = street;
     }
 
-    public int getHousenum() {
+    private int getHousenum() {
         return housenum;
     }
 
@@ -82,7 +81,7 @@ public class Business implements Serializable {
         this.housenum = housenum;
     }
 
-    public String getPhoneNum() {
+    private String getPhoneNum() {
         return phoneNum;
     }
 

@@ -1,7 +1,6 @@
 package com.example.userside.Backend.DB;
 
-import android.widget.Filter;
-import android.widget.Filterable;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,8 +10,8 @@ import java.util.Set;
 
 
 public abstract class ListFilter<Input> {
-    String searchInput;
-    ArrayList<Input> rawData;
+    private final String searchInput;
+    private final ArrayList<Input> rawData;
     ArrayList<Input> output;
 
     /**
@@ -20,7 +19,7 @@ public abstract class ListFilter<Input> {
      * @param input the query input
      * @param data the data to filter
      */
-    public ListFilter(String input, ArrayList<Input> data) {
+    ListFilter(String input, ArrayList<Input> data) {
         searchInput = input;
         rawData = data;
     }
@@ -53,14 +52,14 @@ public abstract class ListFilter<Input> {
      * eachItemFilter the function to filter like
      * @return the array after all was filtered.
      */
-    public ArrayList<Input> filterOr(String[] input) {
+    private ArrayList<Input> filterOr(String[] input) {
         ArrayList<Input> toReturn = new ArrayList<>();
         //output.addAll(rawData);
         for (String i : input)
             try {
                 toReturn.addAll(SumFilter(i,rawData));
             } catch (Exception e) {
-                String mes = e.getMessage();
+                e.printStackTrace();
             }
         return toReturn;
     }
@@ -70,7 +69,7 @@ public abstract class ListFilter<Input> {
      * @param input
      * @return
      */
-    public ArrayList<Input> filterAnd(String[] input) {
+    private ArrayList<Input> filterAnd(String[] input) {
         ArrayList<Input> toReturn = new ArrayList<>();
         ArrayList<Input> filteredList;
         boolean firstRun = true;
@@ -88,6 +87,7 @@ public abstract class ListFilter<Input> {
                     toReturn.addAll(filteredList);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
         return toReturn;
     }

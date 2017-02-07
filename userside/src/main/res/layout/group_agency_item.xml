@@ -15,11 +15,11 @@
                 android:layout_height="match_parent"
                 android:gravity="center">
                 <ImageView
+                    android:contentDescription="Agency-Icon"
                     android:layout_width="79dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    app:srcCompat="@mipmap/agency"
-                    android:id="@+id/imageViewAtt" />
+                    app:srcCompat="@mipmap/agency" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

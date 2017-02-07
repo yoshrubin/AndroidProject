@@ -8,15 +8,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 
-public class AsyncQuery extends AsyncTask<Object,Void,Void> {
+class AsyncQuery extends AsyncTask<Object,Void,Void> {
 
     private final String TAG = "DBQuery";
     private Uri uri;
     private String string;
     private Context context;
-    public Cursor mCursor;
+    private Cursor mCursor;
     public boolean flag = true;
-    public boolean ifError = false;
+    private boolean ifError = false;
 
 
     @Override

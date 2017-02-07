@@ -8,9 +8,6 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.userside.Backend.DB.TimeUpdate;
-import com.example.userside.Backend.adapters.PublicObjects;
-
 import com.example.userside.Model.secondAppActivity;
 import com.example.userside.R;
 

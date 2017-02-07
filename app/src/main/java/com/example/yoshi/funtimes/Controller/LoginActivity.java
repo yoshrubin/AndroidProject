@@ -1,11 +1,9 @@
 package com.example.yoshi.funtimes.Controller;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,8 +22,8 @@ import com.example.yoshi.funtimes.R;
 public class LoginActivity extends Activity {
 
     public static final String MY_PREFS_NAME="myPrefsFile";
-    EditText usernameText = null;
-    EditText passwordText=null;
+    private EditText usernameText = null;
+    private EditText passwordText=null;
 
 
     @Override
@@ -49,7 +47,7 @@ public class LoginActivity extends Activity {
          */
         startService(new Intent(getBaseContext(),service.class));
     }
-    public void loginCheck(Cursor mCursor){
+    private void loginCheck(Cursor mCursor){
         String tempPassword="";
 
         if (mCursor == null) {
@@ -83,7 +81,7 @@ public class LoginActivity extends Activity {
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putString("usernameKey",usernameText.getText().toString());
         editor.putString("passwordKey",passwordText.getText().toString());
-        editor.commit();
+        editor.apply();
         Cursor mCursor;
 
         //local string that store the password temporary

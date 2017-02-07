@@ -1,9 +1,7 @@
 package com.example.userside.Backend.DB;
 
-import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.expendableList.GroupTrip;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 
 //this is an implementation of filter for trips so it will be searchable

@@ -6,7 +6,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.CancellationSignal;
 import android.support.annotation.Nullable;
 
 import com.example.yoshi.funtimes.Model.Backend.IDataSource;
@@ -19,7 +18,7 @@ import java.util.Objects;
 //This our content provider, this where we putting all the overrides needed to implement ContentProvider
 public class ContentProvide extends ContentProvider {
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    private static IDataSource manager = ManagerFactory.getDB();//lll
+    private static final IDataSource manager = ManagerFactory.getDB();//lll
 
     //sets the uris
     static {
@@ -31,12 +30,12 @@ public class ContentProvide extends ContentProvider {
     /*
     * Easy reference for the Uri to be used in MActivity for insert function
      */
-    static final String PROVIDE_NAME = "content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide";
-    static final String URL_BUSINESS = PROVIDE_NAME + "/business";
+    private static final String PROVIDE_NAME = "content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide";
+    private static final String URL_BUSINESS = PROVIDE_NAME + "/business";
     public static final Uri BUSINESS_URI = Uri.parse(URL_BUSINESS);
-    static final String URL_USER = PROVIDE_NAME + "/users";
+    private static final String URL_USER = PROVIDE_NAME + "/users";
     public static final Uri USER_URI = Uri.parse(URL_USER);
-    static final String URL_ACTION = PROVIDE_NAME + "/actions";
+    private static final String URL_ACTION = PROVIDE_NAME + "/actions";
     public static final Uri ACTION_URI = Uri.parse(URL_ACTION);
 
     @Override
