@@ -20,8 +20,6 @@ public class reciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
-        Toast.makeText(context,"Intent Received",Toast.LENGTH_LONG).show();
         Log.d("second app: ", "broadcast received");
         Intent intnt = new Intent(context,secondAppActivity.class);
         intnt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -31,8 +29,8 @@ public class reciever extends BroadcastReceiver {
     private void addNotification(Context context){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setSmallIcon(R.mipmap.ic_launch);
-        builder.setContentTitle("New Attraction/Business Added !");
-        builder.setContentText("The Database have changed , need to sync");
+        builder.setContentTitle("New Agency or Trip Added!");
+        builder.setContentText("Come Check Out New Adventures!");
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         mNotificationManager.notify(1,builder.build());
 
