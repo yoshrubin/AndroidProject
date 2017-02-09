@@ -181,6 +181,8 @@ public class agencyExpandListAdapter extends BaseExpandableListAdapter {
         email.setText(childAgency.getAgencyMail());
         TextView website =(TextView)convertView.findViewById(R.id.entred_site_agency_exp);
         website.setText(childAgency.getAgencyWebsite());
+        /*TextView phone =(TextView)convertView.findViewById(R.id.entred_phone_agency_exp);
+        phone.setText(childAgency.getAgencyPhone());*/
         return convertView;
 
     }

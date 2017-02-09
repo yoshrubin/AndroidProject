@@ -81,7 +81,7 @@ public class Business implements Serializable {
         this.housenum = housenum;
     }
 
-    private String getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 

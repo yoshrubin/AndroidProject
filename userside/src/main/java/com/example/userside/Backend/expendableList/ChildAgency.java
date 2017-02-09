@@ -6,8 +6,15 @@ public class ChildAgency {
     private String agencyLocation;
     private String agencyWebsite;
     private String agencyMail;
+    private String agencyPhone;
 
+    public String getAgencyPhone() {
+        return agencyPhone;
+    }
 
+    public void setAgencyPhone(String agencyPhone) {
+        this.agencyPhone = agencyPhone;
+    }
 
     public String getAgencyName() {
         return agencyName;

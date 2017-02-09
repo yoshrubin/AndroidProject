@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.userside.Model.AgenciesFragment"
-    >
+    android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -16,10 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/exp_agencies"
             tools:context="Age"
-
             />
-
-
     </RelativeLayout>
 
 </FrameLayout>

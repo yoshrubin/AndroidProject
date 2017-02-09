@@ -126,6 +126,7 @@ public class AgenciesFragment extends android.app.Fragment {
         detailInfo.setAgencyLocation(location);
         detailInfo.setAgencyWebsite(website);
         detailInfo.setAgencyMail(email);
+        //detailInfo.setAgencyPhone(phone);
 
         agencyChildList.add(detailInfo);
         headerInfo.setAgencyDetails(agencyChildList);
@@ -133,7 +134,6 @@ public class AgenciesFragment extends android.app.Fragment {
         groupPosition = agencyChildList.indexOf(headerInfo);
         return groupPosition;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -165,6 +165,7 @@ public class AgenciesFragment extends android.app.Fragment {
                 final TextView site = (TextView) exp_agencies.findViewById(R.id.entred_site_agency_exp);
                 final TextView location = (TextView) exp_agencies.findViewById(R.id.entred_location_agency_exp);
                 final TextView email = (TextView) exp_agencies.findViewById(R.id.entred_mail_agency_exp);
+                //final TextView phone = (TextView) exp_agencies.findViewById(R.id.entred_phone_agency_exp);
                 site.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -183,6 +184,12 @@ public class AgenciesFragment extends android.app.Fragment {
                         EmailIntent(getActivity(), email.getText().toString());
                     }
                 });
+                /*phone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PhoneIntent(phone.getText().toString());
+                    }
+                });*/
                 return false;
             }
 
@@ -216,20 +223,6 @@ public class AgenciesFragment extends android.app.Fragment {
         for (int i = 0; i < count; i++){
             exp_agencies.collapseGroup(i);
         }
-    }
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -315,6 +308,10 @@ public class AgenciesFragment extends android.app.Fragment {
                 "mailto", email, null));
         curr.startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
+
+    /*private void PhoneIntent(final String phoneNumber) {
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
+    }*/
 
     public void updateView() {
         getListAsyncTask();

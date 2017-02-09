@@ -51,30 +51,27 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/entered_startdate_trip_exp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="10dp"/>
         <TextView
             android:id="@+id/entred_enddate_trip_exp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="10dp"/>
         <TextView
             android:id="@+id/entred_agency_trip_exp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="10dp" />
-
         <TextView
             android:id="@+id/entred_price_trip_exp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="10dp"/>
+            android:padding="10dp" />
     </LinearLayout>
-
-
 </LinearLayout>

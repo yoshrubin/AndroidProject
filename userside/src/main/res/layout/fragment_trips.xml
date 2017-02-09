@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.userside.Model.TripsFragment">
+    tools:context="com.example.userside.Model.TripsFragment"
+    android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
 

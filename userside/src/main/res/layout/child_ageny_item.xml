@@ -71,7 +71,6 @@
             android:textSize="14dp"
             android:background="@android:color/white"
             android:layout_marginBottom="1px"/>
-
         <TextView
             android:id="@+id/entred_site_agency_exp"
             android:layout_width="match_parent"
@@ -80,9 +79,6 @@
             android:padding="10dp"
             android:textSize="14dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="1px"
-            android:onClick=""/>
+            android:layout_marginBottom="1px"/>
     </LinearLayout>
-
-
 </LinearLayout>

@@ -215,34 +215,6 @@ public class TripsFragment extends android.app.Fragment {
         return view;
     }
 
-    private void expandAll() {
-        int count = listAdapter.getGroupCount();
-        for (int i = 0; i < count; i++){
-            exp_trips.expandGroup(i);
-        }
-    }
-
-    //method to collapse all groups
-    private void collapseAll() {
-        int count = listAdapter.getGroupCount();
-        for (int i = 0; i < count; i++){
-            exp_trips.collapseGroup(i);
-        }
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void Filter(String s) {
         ArrayList list = new ArrayList();
