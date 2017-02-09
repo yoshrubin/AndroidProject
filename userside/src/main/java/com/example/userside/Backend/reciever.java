@@ -8,6 +8,8 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.userside.Backend.Factory.Backend;
+import com.example.userside.Backend.Factory.BackendFactory;
 import com.example.userside.Model.secondAppActivity;
 import com.example.userside.R;
 
@@ -16,13 +18,14 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 //this our broadcast receiver
 
 public class reciever extends BroadcastReceiver {
+    private Backend db;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         Log.d("second app: ", "broadcast received");
-        Intent intnt = new Intent(context,secondAppActivity.class);
-        intnt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        db = BackendFactory.getFactoryDatabase();
+        db.setUpDatabase();
         addNotification(context);
     }
 

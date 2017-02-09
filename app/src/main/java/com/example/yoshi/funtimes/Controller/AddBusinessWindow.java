@@ -102,7 +102,6 @@ public class AddBusinessWindow extends Activity {
         EditText Email = (EditText) findViewById(R.id.emailEdit);
         email = Email.getText().toString();
         //Site
-        //phoneNum
         EditText Site = (EditText) findViewById(R.id.siteEdit);
         site = Site.getText().toString();
 
@@ -203,7 +202,7 @@ public class AddBusinessWindow extends Activity {
         business.put("city", city);
         business.put("street", street);
         business.put("housenum", housenum);
-        business.put("phonenum", phoneNum);
+        business.put("phoneNum", phoneNum);
         business.put("email", email);
         business.put("site", site);
         business.put("user", user);

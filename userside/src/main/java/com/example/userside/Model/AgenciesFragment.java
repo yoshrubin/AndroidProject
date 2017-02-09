@@ -28,6 +28,8 @@ import com.example.userside.R;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import static com.example.userside.Backend.DB.listDB.businessList;
+
 //this is where we define the Agency Fragment, bounded with fragment_trips.XML
 
 /**
@@ -56,7 +58,7 @@ public class AgenciesFragment extends android.app.Fragment {
     private String mParam2;
 
     private final listDB dbList = new listDB();
-    private final ArrayList<Business> businessList = new ArrayList<>();
+    //private final ArrayList<Business> businessList = new ArrayList<>();
     private final ArrayList<GroupAgency> beforeFilterList = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
@@ -91,17 +93,16 @@ public class AgenciesFragment extends android.app.Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
         }
-        businessList.addAll(dbList.getBusinessList());
     }
     private void loadData(){
         Business business;
 
         for (int i = 0; i < businessList.size(); i++) {
             business = businessList.get(i);
-            addAgency(business.getName(), business.getCountry(), business.getSite(), business.getEmail());
+            addAgency(business.getName(), business.getCountry(), business.getSite(), business.getEmail(), business.getPhoneNum());
         }
     }
-    private int addAgency(String agencyName, String location, String website, String email){
+    private int addAgency(String agencyName, String location, String website, String email, String phone){
 
         int groupPosition=0;
         //check the hash map if the group already exists
@@ -126,7 +127,7 @@ public class AgenciesFragment extends android.app.Fragment {
         detailInfo.setAgencyLocation(location);
         detailInfo.setAgencyWebsite(website);
         detailInfo.setAgencyMail(email);
-        //detailInfo.setAgencyPhone(phone);
+        detailInfo.setAgencyPhone(phone);
 
         agencyChildList.add(detailInfo);
         headerInfo.setAgencyDetails(agencyChildList);
@@ -165,7 +166,7 @@ public class AgenciesFragment extends android.app.Fragment {
                 final TextView site = (TextView) exp_agencies.findViewById(R.id.entred_site_agency_exp);
                 final TextView location = (TextView) exp_agencies.findViewById(R.id.entred_location_agency_exp);
                 final TextView email = (TextView) exp_agencies.findViewById(R.id.entred_mail_agency_exp);
-                //final TextView phone = (TextView) exp_agencies.findViewById(R.id.entred_phone_agency_exp);
+                final TextView phone = (TextView) exp_agencies.findViewById(R.id.entred_phone_agency_exp);
                 site.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -184,12 +185,12 @@ public class AgenciesFragment extends android.app.Fragment {
                         EmailIntent(getActivity(), email.getText().toString());
                     }
                 });
-                /*phone.setOnClickListener(new View.OnClickListener() {
+                phone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         PhoneIntent(phone.getText().toString());
                     }
-                });*/
+                });
                 return false;
             }
 
@@ -309,41 +310,7 @@ public class AgenciesFragment extends android.app.Fragment {
         curr.startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 
-    /*private void PhoneIntent(final String phoneNumber) {
+    private void PhoneIntent(final String phoneNumber) {
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
-    }*/
-
-    public void updateView() {
-        getListAsyncTask();
-    }
-
-    private void getListAsyncTask() {
-        class myTask extends AsyncTask<Void, Void, Void> {
-            ArrayList<Business> newList = new ArrayList<>();
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                if(exp_agencies != null)
-                    exp_agencies.setVisibility(View.GONE);
-            }
-
-            @Override
-            protected Void doInBackground(Void... params) {
-                    newList = dbList.getBusinessList();
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                if (exp_agencies != null)
-                    exp_agencies.setVisibility(View.VISIBLE);
-                if (listAdapter != null)
-                    refreshAdapter(listAdapter, businessList, newList);
-            }
-        }
-        myTask task = new myTask();
-        task.execute();
     }
 }

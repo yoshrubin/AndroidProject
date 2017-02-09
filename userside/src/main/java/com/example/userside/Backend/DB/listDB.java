@@ -20,8 +20,8 @@ public class listDB implements Backend{
     private Cursor busMatrix;
     private Cursor actMatrix;
     ContentResolver resolver;
-    private ArrayList<Business> businessList = new ArrayList<>();
-    private ArrayList<Action> actionList = new ArrayList<>();
+    public static ArrayList<Business> businessList = new ArrayList<>();
+    public static ArrayList<Action> actionList = new ArrayList<>();
     private final ArrayList<Action> actionBusinessList = new ArrayList<>();
     private final ArrayList<Business> businessCountryList = new ArrayList<>();
 
@@ -150,6 +150,10 @@ public class listDB implements Backend{
 
     @Override
     public void setUpDatabase() {
+        if(!actionList.isEmpty() || businessList.isEmpty()){
+            actionList.clear();
+            businessList.clear();
+        }
         try {
             actionList = getAttractionList();
         } catch (ParseException e) {

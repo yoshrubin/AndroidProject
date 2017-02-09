@@ -1,6 +1,6 @@
 package com.example.userside.Model;
 
-import android.content.Context;
+
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.example.userside.Backend.DB.TripGroupFilter;
 import com.example.userside.Backend.DB.listDB;
 import com.example.userside.Backend.Entitites.Action;
-import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.adapters.tripExpandListAdapter;
 import com.example.userside.Backend.expendableList.ChildTrip;
 import com.example.userside.Backend.expendableList.GroupTrip;
@@ -28,6 +27,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Locale;
+
+import static com.example.userside.Backend.DB.listDB.actionList;
+import static com.example.userside.Backend.DB.listDB.businessList;
 
 //this is where we define the Agency Fragment, bounded with fragment_agencies.XML
 
@@ -43,8 +45,10 @@ import java.util.Locale;
 public class TripsFragment extends android.app.Fragment {
 
     private final listDB dbList = new listDB();
+    /*
     private final ArrayList<Business> businessList = new ArrayList<>();
     private final ArrayList<Action> actionList = new ArrayList<>();
+    */
     private final ArrayList<GroupTrip> beforeFilterList = new ArrayList<>();
 
     private final LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
@@ -95,14 +99,7 @@ public class TripsFragment extends android.app.Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
-        try {
-            actionList.addAll(dbList.getAttractionList());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        businessList.addAll(dbList.getBusinessList());
     }
 
     private void loadData() {
@@ -261,43 +258,5 @@ public class TripsFragment extends android.app.Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    public void updateView() {
-        getListAsyncTask();
-    }
-
-    private void getListAsyncTask() {
-        class myTask extends AsyncTask<Void, Void, Void> {
-            ArrayList<Action> newList = new ArrayList<>();
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                if(exp_trips != null)
-                    exp_trips.setVisibility(View.GONE);
-            }
-
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    newList = dbList.getAttractionList();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                if (exp_trips != null)
-                    exp_trips.setVisibility(View.VISIBLE);
-                if (listAdapter != null)
-                    refreshAdapter(listAdapter, actionList, newList);
-            }
-        }
-        myTask task = new myTask();
-        task.execute();
     }
 }
