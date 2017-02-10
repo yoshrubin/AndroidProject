@@ -23,6 +23,7 @@ import com.example.userside.Backend.Factory.BackendFactory;
 import com.example.userside.Backend.adapters.PublicObjects;
 import com.example.userside.R;
 
+import java.text.ParseException;
 
 
 public class secondAppActivity extends AppCompatActivity
@@ -109,7 +110,11 @@ public class secondAppActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         db = BackendFactory.getFactoryDatabase();
-        db.setUpDatabase();
+        try {
+            db.setUpDatabase();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         update.execute();
     }
 

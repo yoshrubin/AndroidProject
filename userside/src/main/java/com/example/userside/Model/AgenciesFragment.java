@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.userside.Backend.DB.BusinessFilter;
 import com.example.userside.Backend.DB.listDB;
+import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.adapters.agencyExpandListAdapter;
 import com.example.userside.Backend.expendableList.ChildAgency;
@@ -58,6 +59,11 @@ public class AgenciesFragment extends android.app.Fragment {
     private String mParam2;
 
     private final listDB dbList = new listDB();
+
+    /*
+    public ArrayList<Business> businessList = dbList.businessList;
+    public ArrayList<Action> actionList = dbList.actionList;
+*/
     //private final ArrayList<Business> businessList = new ArrayList<>();
     private final ArrayList<GroupAgency> beforeFilterList = new ArrayList<>();
 

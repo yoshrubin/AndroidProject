@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.userside.Backend.DB.TripGroupFilter;
 import com.example.userside.Backend.DB.listDB;
 import com.example.userside.Backend.Entitites.Action;
+import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.adapters.tripExpandListAdapter;
 import com.example.userside.Backend.expendableList.ChildTrip;
 import com.example.userside.Backend.expendableList.GroupTrip;
@@ -49,6 +50,11 @@ public class TripsFragment extends android.app.Fragment {
     private final ArrayList<Business> businessList = new ArrayList<>();
     private final ArrayList<Action> actionList = new ArrayList<>();
     */
+/*
+    public ArrayList<Business> businessList = dbList.businessList;
+    public ArrayList<Action> actionList = dbList.actionList;
+    */
+
     private final ArrayList<GroupTrip> beforeFilterList = new ArrayList<>();
 
     private final LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
@@ -188,9 +194,6 @@ public class TripsFragment extends android.app.Fragment {
                 //get the child info
                 ChildTrip detailInfo =  headerInfo.gettripDetails().get(childPosition);
                 //display it or do something with it
-                /*Toast.makeText(secondAppActivity.context.getApplicationContext()  , " Clicked on :: " + headerInfo.getcountryName()
-                        + "/" +detailInfo.getStartDate()+"/"+ detailInfo.getAgency()+"/"+  +detailInfo.getPrice(), Toast.LENGTH_LONG).show();
-                */
                 return false;
             }
         });
@@ -202,9 +205,6 @@ public class TripsFragment extends android.app.Fragment {
                 //get the group header
                 GroupTrip headerInfo = tripGroupList.get(groupPosition);
                 //display it or do something with it
-                /*Toast.makeText(secondAppActivity.context.getApplicationContext(), " Header is :: " + headerInfo.getcountryName(),
-                        Toast.LENGTH_LONG).show();
-*/
                 return false;
             }
         });

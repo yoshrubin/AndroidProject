@@ -12,5 +12,5 @@ public interface Backend {
     ArrayList<Action> getAttractionList() throws ParseException;
     ArrayList<Business> getBusinessList(String Country);
     ArrayList<Action> getAttractionList(Business business) throws ParseException;
-    void setUpDatabase();
+    void setUpDatabase() throws ParseException;
 }

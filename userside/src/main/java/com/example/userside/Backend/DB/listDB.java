@@ -151,11 +151,9 @@ public class listDB implements Backend{
     }
 
     @Override
-    public void setUpDatabase() {
-        if(!(actionList.size() == 0) || !(businessList.size() == 0)){
-            actionList.clear();
-            businessList.clear();
-        }
+    public void setUpDatabase() throws ParseException {
+        businessList.clear();
+        actionList.clear();
         businessList = getBusinessList();
         try {
             actionList = getAttractionList();

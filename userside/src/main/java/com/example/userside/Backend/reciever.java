@@ -13,6 +13,8 @@ import com.example.userside.Backend.Factory.BackendFactory;
 import com.example.userside.Model.secondAppActivity;
 import com.example.userside.R;
 
+import java.text.ParseException;
+
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 //this our broadcast receiver
@@ -27,7 +29,11 @@ public class reciever extends BroadcastReceiver {
         /*Intent intnt = new Intent(context,secondAppActivity.class);
         intnt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
         db = BackendFactory.getFactoryDatabase();
-        db.setUpDatabase();
+        try {
+            db.setUpDatabase();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         addNotification(context);
     }
 
