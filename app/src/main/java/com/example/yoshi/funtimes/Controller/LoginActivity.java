@@ -13,6 +13,8 @@ import com.example.yoshi.funtimes.Model.DataSources.ContentProvide;
 import com.example.yoshi.funtimes.Model.Service.service;
 import com.example.yoshi.funtimes.R;
 
+import static com.example.yoshi.funtimes.Model.DataSources.ContentProvide.ACTION_URI;
+
 
 /**
  * A login screen that offers login via user/password.
@@ -31,6 +33,9 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);/**/
         setContentView(R.layout.login_window);
         setTitle("Login");
+
+        Cursor test = getContentResolver().query(ACTION_URI,null,null,null,null,null);
+        Cursor mytest = test;
 
         /*
         Creating Shared Preference

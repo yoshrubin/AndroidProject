@@ -30,12 +30,12 @@ public class ContentProvide extends ContentProvider {
     /*
     * Easy reference for the Uri to be used in MActivity for insert function
      */
-    private static final String PROVIDE_NAME = "content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide";
-    private static final String URL_BUSINESS = PROVIDE_NAME + "/business";
+    public static final String PROVIDE_NAME = "content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide";
+    public static final String URL_BUSINESS = PROVIDE_NAME + "/business";
     public static final Uri BUSINESS_URI = Uri.parse(URL_BUSINESS);
-    private static final String URL_USER = PROVIDE_NAME + "/users";
+    public static final String URL_USER = PROVIDE_NAME + "/users";
     public static final Uri USER_URI = Uri.parse(URL_USER);
-    private static final String URL_ACTION = PROVIDE_NAME + "/actions";
+    public static final String URL_ACTION = PROVIDE_NAME + "/actions";
     public static final Uri ACTION_URI = Uri.parse(URL_ACTION);
 
     @Override
@@ -46,7 +46,7 @@ public class ContentProvide extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(Uri uri, String[] strings, String s, String[] strings1, String s1) {
+    public Cursor query(Uri uri, String[] strings, final String s, String[] strings1, String s1) {
         String table = uri.getPath().substring(1);
         final String id = s;
         if (table.equalsIgnoreCase("users") && !Objects.equals(s, null))//s is the id
@@ -168,36 +168,33 @@ public class ContentProvide extends ContentProvider {
 
                 return null;
             }
-    }
-
-    if(table.equalsIgnoreCase("actions"))
-
-    {
-
-        try {
-            AsyncTask<Void, Void, Cursor> asyncTask = new AsyncTask<Void, Void, Cursor>() {
-                @Override
-                protected Cursor doInBackground(Void... params) {
-                    try {
-                        return manager.getActionsDS();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                }
-            };
-            asyncTask.execute();
-            return asyncTask.get();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-            return null;
         }
+        if (table.equalsIgnoreCase("actions")){
+            try {
+                AsyncTask<Void, Void, Cursor> asyncTask = new AsyncTask<Void, Void, Cursor>() {
+                    @Override
+                    protected Cursor doInBackground(Void... params) {
+                        try {
+                            return manager.getActionsDS();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                };
+                asyncTask.execute();
+                return asyncTask.get();
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+
+                return null;
+            }
+        }
+        return null;
     }
-    return null;
-}
+
 
 
     @Nullable
@@ -230,7 +227,7 @@ public class ContentProvide extends ContentProvider {
             return null;
         }
         throw new IllegalArgumentException("This Content Provider supports only trips insertion");
-        }
+    }
     @Override
     public int delete(Uri uri, String s, String[] strings) {
         return 0;

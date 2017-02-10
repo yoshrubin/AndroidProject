@@ -93,8 +93,6 @@ public class secondAppActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         context = this;
-        db = BackendFactory.getFactoryDatabase();
-        db.setUpDatabase();
     }
 
     @Override
@@ -110,6 +108,8 @@ public class secondAppActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        db = BackendFactory.getFactoryDatabase();
+        db.setUpDatabase();
         update.execute();
     }
 

@@ -1,5 +1,6 @@
 package com.example.userside.Backend.DB;
 
+import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
@@ -19,9 +20,10 @@ import java.util.Locale;
 public class listDB implements Backend{
     private Cursor busMatrix;
     private Cursor actMatrix;
-    ContentResolver resolver;
     public static ArrayList<Business> businessList = new ArrayList<>();
     public static ArrayList<Action> actionList = new ArrayList<>();
+    public ArrayList<Business> tempBusinessList = new ArrayList<>();
+    public ArrayList<Action> tempActionList = new ArrayList<>();
     private final ArrayList<Action> actionBusinessList = new ArrayList<>();
     private final ArrayList<Business> businessCountryList = new ArrayList<>();
 
@@ -29,7 +31,7 @@ public class listDB implements Backend{
     private static final Uri busUri = Uri.parse("content://com.example.yoshi.funtimes.Model.DataSources.ContentProvide/business");
 
     //ContentProviderClient actResolver = secondAppActivity.context.getContentResolver().acquireContentProviderClient(actUri);
-   // ContentProviderClient busResolver = secondAppActivity.context.getContentResolver().acquireContentProviderClient(busUri);
+    //ContentProviderClient busResolver = secondAppActivity.context.getContentResolver().acquireContentProviderClient(busUri);
 
     private final ContentResolver actResolver = secondAppActivity.context.getContentResolver();
     private final ContentResolver busResolver = actResolver;
@@ -56,16 +58,16 @@ public class listDB implements Backend{
             int site = busMatrix.getColumnIndex("site");
             int user = busMatrix.getColumnIndex("user");
 
-            businessList.add(new Business(busMatrix.getInt(IDN), busMatrix.getString(name), busMatrix.getString(country),
+            tempBusinessList.add(new Business(busMatrix.getInt(IDN), busMatrix.getString(name), busMatrix.getString(country),
                     busMatrix.getString(city), busMatrix.getString(street), busMatrix.getInt(housenum),
                     busMatrix.getString(phoneNum),busMatrix.getString(email), busMatrix.getString(site), busMatrix.getString(user)));
         } while (busMatrix.moveToNext());
-        return businessList;
+        return tempBusinessList;
     }
 
     @Override
     public ArrayList<Action> getAttractionList() throws ParseException {
-        actMatrix = actResolver.query(actUri,null,null,null,null);
+        actMatrix = actResolver.query(actUri,null,null,null,null,null);
         actMatrix.moveToFirst();
         do {
                 /*
@@ -82,15 +84,15 @@ public class listDB implements Backend{
                 int IDN = actMatrix.getColumnIndex("IDN");
                 int user = actMatrix.getColumnIndex("user");
                 // String type, String country_Name, String start_Date, String end_Date, String cost, String description, String business_ID
-                actionList.add(new Action(Action.Attraction.valueOf(actMatrix.getString(attraction)), actMatrix.getString(country),
+                tempActionList.add(new Action(Action.Attraction.valueOf(actMatrix.getString(attraction)), actMatrix.getString(country),
                         sdf.parse(actMatrix.getString(startdate)), sdf.parse(actMatrix.getString(enddate)), actMatrix.getDouble(price),
                         actMatrix.getString(description), actMatrix.getInt(IDN), actMatrix.getString(user)));
             } while (actMatrix.moveToNext());
-            return actionList;
+            return tempActionList;
     }
 
     @Override
-    public ArrayList<Business> getBusinessList(String Country) {
+    public ArrayList<Business> getBusinessList(String Country) {//we never ended up using these lists
         busMatrix = busResolver.query(busUri,null,null,null,null,null);
         busMatrix.moveToFirst();
         while(!busMatrix.isAfterLast()){
@@ -150,15 +152,16 @@ public class listDB implements Backend{
 
     @Override
     public void setUpDatabase() {
-        if(!actionList.isEmpty() || businessList.isEmpty()){
+        if(!(actionList.size() == 0) || !(businessList.size() == 0)){
             actionList.clear();
             businessList.clear();
         }
+        businessList = getBusinessList();
         try {
             actionList = getAttractionList();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        businessList = getBusinessList();
+
     }
 }

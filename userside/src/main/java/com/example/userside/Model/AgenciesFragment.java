@@ -313,4 +313,38 @@ public class AgenciesFragment extends android.app.Fragment {
     private void PhoneIntent(final String phoneNumber) {
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
+
+    public void updateView() {
+        getListAsyncTask();
+    }
+
+    private void getListAsyncTask() {
+        class myTask extends AsyncTask<Void, Void, Void> {
+            ArrayList<Business> newList = new ArrayList<>();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                if(exp_agencies != null)
+                    exp_agencies.setVisibility(View.GONE);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                    newList = dbList.getBusinessList();
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (exp_agencies != null)
+                    exp_agencies.setVisibility(View.VISIBLE);
+                if (listAdapter != null)
+                    refreshAdapter(listAdapter, businessList, newList);
+            }
+        }
+        myTask task = new myTask();
+        task.execute();
+    }
 }

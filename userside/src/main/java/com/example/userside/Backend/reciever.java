@@ -24,6 +24,8 @@ public class reciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         Log.d("second app: ", "broadcast received");
+        /*Intent intnt = new Intent(context,secondAppActivity.class);
+        intnt.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);*/
         db = BackendFactory.getFactoryDatabase();
         db.setUpDatabase();
         addNotification(context);
