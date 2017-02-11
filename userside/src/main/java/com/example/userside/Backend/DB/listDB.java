@@ -1,6 +1,5 @@
 package com.example.userside.Backend.DB;
 
-import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
@@ -8,6 +7,8 @@ import android.net.Uri;
 import com.example.userside.Backend.Entitites.Action;
 import com.example.userside.Backend.Entitites.Business;
 import com.example.userside.Backend.Factory.Backend;
+import com.example.userside.Model.AgenciesFragment;
+import com.example.userside.Model.TripsFragment;
 import com.example.userside.Model.secondAppActivity;
 
 import java.text.ParseException;
@@ -160,6 +161,7 @@ public class listDB implements Backend{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+        //trip.refreshAdapter(trip.listAdapter,trip.tripGroupList,actionList);
+        //agency.refreshAdapter(agency.listAdapter,agency.agencyGroupList,businessList);
     }
 }

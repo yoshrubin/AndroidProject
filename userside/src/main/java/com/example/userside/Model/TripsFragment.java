@@ -58,9 +58,9 @@ public class TripsFragment extends android.app.Fragment {
     private final ArrayList<GroupTrip> beforeFilterList = new ArrayList<>();
 
     private final LinkedHashMap<String, GroupTrip> subjects = new LinkedHashMap<String, GroupTrip>();
-    private final ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
+    public final ArrayList<GroupTrip> tripGroupList = new ArrayList<GroupTrip>();
 
-    private tripExpandListAdapter listAdapter;
+    public tripExpandListAdapter listAdapter;
     private ExpandableListView exp_trips;
 
 

@@ -44,9 +44,9 @@ import static com.example.userside.Backend.DB.listDB.businessList;
 public class AgenciesFragment extends android.app.Fragment {
 
     private LinkedHashMap<String, GroupAgency> subjects = new LinkedHashMap<String, GroupAgency>();
-    private ArrayList<GroupAgency> agencyGroupList = new ArrayList<GroupAgency>();
+    public ArrayList<GroupAgency> agencyGroupList = new ArrayList<GroupAgency>();
 
-    private agencyExpandListAdapter listAdapter;
+    public agencyExpandListAdapter listAdapter;
     private ExpandableListView exp_agencies;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -257,7 +257,7 @@ public class AgenciesFragment extends android.app.Fragment {
         refreshAdapter(listAdapter, agencyGroupList, beforeFilterList);
     }
 
-    private static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
+    public static void refreshAdapter(BaseExpandableListAdapter ad, ArrayList originList, ArrayList newList) {
         originList.clear();
         originList.addAll(newList);
         ad.notifyDataSetChanged();
